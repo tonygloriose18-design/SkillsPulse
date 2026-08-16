@@ -1,20 +1,2 @@
-import streamlit as st
-
-# Page Title
-st.title("SkillsPulse AI 🚀")
-st.subheader("Welcome to our Career & Skills Analysis Tool")
-
-# Put your copied image link between the quotes below:
-image_url = "PASTE_YOUR_COPIED_IMAGE_LINK_HERE"
-
-# Display the image safely
-try:
-    st.image(image_url, caption="SkillsPulse AI Platform", use_container_width=True)
-except:
-    st.info("Paste a valid image link above to display your hero image!")
-
-# Interactive Section
-st.write("---")
-st.header("Get Started")
-job_role = st.selectbox("Select your target role:", ["Data Analyst", "Software Engineer", "AI Specialist"])
-st.success(f"You selected: {job_role}")
+# Banner Image
+st.image("https://images.unsplash.com/photo-1773332585956-2d0e8ac80cb6?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", caption="Empowering Everyday Learning", use_container_width=True)

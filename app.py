@@ -58,7 +58,7 @@ if page == "🏠 Home Dashboard":
         st.error("**🔒 Digital Security**\n\nProtect your accounts, avoid online scams, and secure personal information.")
         st.info("**🌐 Remote Collaboration & AI Tools**\n\nMaster Zoom, Google Workspace, and basic AI productivity helpers.")
 
-# 4. PAGE 2: AI CHATBOT ASSISTANT (EjoChat REST API Integration)
+# 4. PAGE 2: AI CHATBOT ASSISTANT
 elif page == "🤖 SkillsPulse AI Assistant":
     st.title("🤖 SkillsPulse AI Tutor")
     st.write("Ask any questions about basic digital skills, document formatting, or resume writing!")
@@ -112,7 +112,7 @@ elif page == "🤖 SkillsPulse AI Assistant":
 # 5. PAGE 3: LEARNING MODULES
 elif page == "📚 Learning Modules":
     st.title("📚 Interactive Learning Modules")
-    st.write("Select a topic below to explore step-by-step practical guides.")
+    st.write("Select a topic below to access structured guides, video tutorials, and practical exercises.")
     
     category = st.selectbox(
         "Choose a module to explore:",
@@ -130,35 +130,76 @@ elif page == "📚 Learning Modules":
     st.divider()
     
     if category == "💻 Basic Computer & Internet Literacy":
-        st.subheader("Computer & Internet Basics")
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.info("**Module A: Navigation**\n\n• OS basics & desktop management\n• Organizing folders & files\n• Web browser navigation")
-        with col2:
-            st.info("**Module B: Email Setup**\n\n• Creating professional emails\n• Structuring clear messages\n• Sending attachments safely")
-        with col3:
-            st.info("**Module C: Web Search**\n\n• Google search strategies\n• Identifying trusted websites\n• Downloading documents")
+        st.subheader("💻 Computer & Internet Basics")
+        
+        tab1, tab2, tab3 = st.tabs(["🎥 Video Lesson", "📖 Reading & Steps", "📥 Resources"])
+        
+        with tab1:
+            st.write("#### Watch: Master Computer Navigation")
+            st.video("https://www.youtube.com/watch?v=y2K1qI_N7S4")
+            
+        with tab2:
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.info("**Module A: Navigation**\n\n• OS basics & desktop management\n• Organizing folders & files\n• Web browser navigation")
+            with col2:
+                st.info("**Module B: Email Setup**\n\n• Creating professional emails\n• Structuring clear messages\n• Sending attachments safely")
+            with col3:
+                st.info("**Module C: Web Search**\n\n• Google search strategies\n• Identifying trusted websites\n• Downloading documents")
+                
+        with tab3:
+            st.write("#### Download Practice Cheat Sheet")
+            sample_guide = "Keyboard Shortcuts Cheat Sheet:\n- Ctrl+C: Copy\n- Ctrl+V: Paste\n- Ctrl+Z: Undo\n- Ctrl+S: Save"
+            st.download_button(
+                label="📄 Download Shortcuts Guide (TXT)",
+                data=sample_guide,
+                file_name="computer_basics_cheat_sheet.txt",
+                mime="text/plain"
+            )
 
     elif category == "📄 Professional Writing & Resume Building":
-        st.subheader("Resume & Professional Writing")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.success("**Resume Builder Guide**\n\n• Summary writing\n• Listing practical experience\n• Clean formatting templates")
-        with col2:
-            st.success("**Cover Letters & Emails**\n\n• Application letter layouts\n• Tailoring experience to jobs\n• Professional follow-ups")
+        st.subheader("📄 Resume & Professional Writing")
+        
+        tab1, tab2, tab3 = st.tabs(["🎥 Video Lesson", "📖 Reading & Steps", "📥 Resources"])
+        
+        with tab1:
+            st.write("#### Watch: How to Write a Winning Resume")
+            st.video("https://www.youtube.com/watch?v=ttWk4n0edgg")
+            
+        with tab2:
+            col1, col2 = st.columns(2)
+            with col1:
+                st.success("**Resume Builder Guide**\n\n• Summary writing\n• Listing practical experience\n• Clean formatting templates")
+            with col2:
+                st.success("**Cover Letters & Emails**\n\n• Application letter layouts\n• Tailoring experience to jobs\n• Professional follow-ups")
+                
+        with tab3:
+            st.write("#### Download Sample Templates")
+            resume_template = "FIRST NAME LAST NAME\nEmail: example@email.com\n\nPROFESSIONAL SUMMARY\nDedicated professional with background in..."
+            st.download_button(
+                label="📄 Download Starter Resume Template (TXT)",
+                data=resume_template,
+                file_name="resume_template.txt",
+                mime="text/plain"
+            )
 
     elif category == "📊 Essential Tools (Excel, Docs & Slides)":
-        st.subheader("Essential Office Applications")
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.warning("**Word Docs**\n\n• Document formatting\n• Tables & headers\n• Exporting to PDF")
-        with col2:
-            st.warning("**Spreadsheets**\n\n• Data entry basics\n• SUM & AVERAGE formulas\n• Simple visual charts")
-        with col3:
-            st.warning("**Presentations**\n\n• Creating clean slides\n• Content structure\n• Visual design tips")
+        st.subheader("📊 Essential Office Applications")
+        tab1, tab2 = st.tabs(["🎥 Video Lesson", "📖 Reading & Steps"])
+        with tab1:
+            st.write("#### Watch: Excel Basics for Beginners")
+            st.video("https://www.youtube.com/watch?v=rwbho0CgEAE")
+        with tab2:
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.warning("**Word Docs**\n\n• Document formatting\n• Tables & headers\n• Exporting to PDF")
+            with col2:
+                st.warning("**Spreadsheets**\n\n• Data entry basics\n• SUM & AVERAGE formulas\n• Simple visual charts")
+            with col3:
+                st.warning("**Presentations**\n\n• Creating clean slides\n• Content structure\n• Visual design tips")
 
     elif category == "🗣️ Communication & Workplace Soft Skills":
-        st.subheader("Soft Skills & Workplace Habits")
+        st.subheader("🗣️ Soft Skills & Workplace Habits")
         col1, col2 = st.columns(2)
         with col1:
             st.info("**Interpersonal Skills**\n\n• Active listening\n• Teamwork basics\n• Clear verbal communication")
@@ -166,7 +207,7 @@ elif page == "📚 Learning Modules":
             st.info("**Time Management**\n\n• Prioritizing tasks\n• Setting daily goals\n• Meeting deadlines")
 
     elif category == "🔒 Online Safety & Digital Security":
-        st.subheader("Online Safety & Privacy")
+        st.subheader("🔒 Online Safety & Privacy")
         col1, col2 = st.columns(2)
         with col1:
             st.error("**Account Protection**\n\n• Creating strong passwords\n• Setting up 2FA\n• Spotting phishing emails")
@@ -174,7 +215,7 @@ elif page == "📚 Learning Modules":
             st.error("**Privacy Rules**\n\n• Social media privacy\n• Safe public Wi-Fi habits\n• Avoiding fake website scams")
 
     elif category == "🛠️ Tech Troubleshooting & System Maintenance":
-        st.subheader("Tech Troubleshooting Basics")
+        st.subheader("🛠️ Tech Troubleshooting Basics")
         col1, col2 = st.columns(2)
         with col1:
             st.success("**Device Maintenance**\n\n• Clearing cache & temporary files\n• Managing storage space\n• Restarting frozen applications")
@@ -182,7 +223,7 @@ elif page == "📚 Learning Modules":
             st.success("**Connectivity Issues**\n\n• Resetting Wi-Fi routers\n• Checking network adapter settings\n• Managing browser extensions")
 
     elif category == "🌐 Remote Work & Digital Collaboration Tools":
-        st.subheader("Remote Collaboration Tools")
+        st.subheader("🌐 Remote Collaboration Tools")
         col1, col2 = st.columns(2)
         with col1:
             st.warning("**Virtual Meetings**\n\n• Zoom & Google Meet etiquette\n• Screen sharing controls\n• Mic & camera configuration")

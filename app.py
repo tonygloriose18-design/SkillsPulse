@@ -1,3 +1,4 @@
+
 import streamlit as st
 import requests
 
@@ -13,7 +14,7 @@ if "current_page" not in st.session_state:
     st.session_state.current_page = "🏠 Home Dashboard"
 
 if "selected_module" not in st.session_state:
-    st.session_state.selected_module = "💻 Computer Literacy & System Navigation"
+    st.session_state.selected_module = "💻 Computer Literacy"
 
 # Sidebar Navigation
 st.sidebar.title("📌 Navigation Menu")
@@ -44,7 +45,7 @@ HERO_IMAGE_URL = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q
 # ---------------------------------------------------------
 if st.session_state.current_page == "🏠 Home Dashboard":
     st.title("📚 SkillsPulse: Essential Skills Academy")
-    st.write("An interactive, high-impact learning suite designed for practical digital literacy and workforce readiness.")
+    st.write("An interactive, high-impact learning suite designed for practical digital literacy, soft skills, and workforce readiness.")
     
     try:
         st.image(HERO_IMAGE_URL, caption="Practical Digital Literacy & Skills Mastery", use_container_width=True)
@@ -56,9 +57,9 @@ if st.session_state.current_page == "🏠 Home Dashboard":
     st.header("⚡ Platform Dashboard Overview")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.metric(label="Active Modules", value="4 Core Tracks")
+        st.metric(label="Primary Track", value="Computer Literacy")
     with col2:
-        st.metric(label="Office Tools", value="Word, Excel, PPT")
+        st.metric(label="Core Suite", value="Word, Excel, PPT")
     with col3:
         st.metric(label="Interactive Labs", value="Live Code & Text")
     with col4:
@@ -70,28 +71,28 @@ if st.session_state.current_page == "🏠 Home Dashboard":
     c1, c2 = st.columns(2)
     
     with c1:
-        st.success("### 💻 Digital & Computer Literacy\nMaster OS fundamentals, file structures, shortcut mastery, and web safety.")
-        if st.button("▶ Open Computer Literacy Lab"):
-            st.session_state.selected_module = "💻 Computer Literacy & System Navigation"
+        st.success("### 💻 Computer Literacy (Focus Track)\nMaster Windows OS, File Management, Microsoft Word, Excel (Deep Dive), and PowerPoint.")
+        if st.button("▶ Open Computer Literacy Suite"):
+            st.session_state.selected_module = "💻 Computer Literacy"
             st.session_state.current_page = "📚 Learning Modules & Practical Lab"
             st.rerun()
 
-        st.info("### 📝 Microsoft Word & Professional Writing\nLearn document formatting, professional email structures, and resume drafting.")
-        if st.button("▶ Open Microsoft Word & Writing Lab"):
-            st.session_state.selected_module = "📝 Microsoft Word & Professional Writing"
+        st.info("### 🤝 Communication & Workplace Collaboration\nMaster professional email etiquette, active listening, and conflict resolution.")
+        if st.button("▶ Open Workplace Communication"):
+            st.session_state.selected_module = "🤝 Communication & Workplace Collaboration"
             st.session_state.current_page = "📚 Learning Modules & Practical Lab"
             st.rerun()
 
     with c2:
-        st.warning("### 📊 Microsoft Excel & Data Analytics\nMaster formulas (SUM, AVERAGE, IF), formatting, tables, and pivot charts.")
-        if st.button("▶ Open Microsoft Excel Lab"):
-            st.session_state.selected_module = "📊 Microsoft Excel & Data Analytics"
+        st.warning("### 💼 Financial Literacy & Budgeting\nLearn personal budgeting, debt management, saving strategies, and basic accounting.")
+        if st.button("▶ Open Financial Literacy"):
+            st.session_state.selected_module = "💼 Financial Literacy & Budgeting"
             st.session_state.current_page = "📚 Learning Modules & Practical Lab"
             st.rerun()
 
-        st.error("### 🎨 Microsoft PowerPoint & Slide Design\nLearn visual design rules, slide layouts, presentation structures, and delivery techniques.")
-        if st.button("▶ Open Microsoft PowerPoint Lab"):
-            st.session_state.selected_module = "🎨 Microsoft PowerPoint & Slide Design"
+        st.error("### 🚀 Critical Thinking & Problem Solving\nDevelop root-cause analysis, decision-making frameworks, and structured thinking.")
+        if st.button("▶ Open Critical Thinking"):
+            st.session_state.selected_module = "🚀 Critical Thinking & Problem Solving"
             st.session_state.current_page = "📚 Learning Modules & Practical Lab"
             st.rerun()
 
@@ -100,7 +101,7 @@ if st.session_state.current_page == "🏠 Home Dashboard":
 # ---------------------------------------------------------
 elif st.session_state.current_page == "🤖 SkillsPulse AI Assistant":
     st.title("🤖 SkillsPulse AI Tutor")
-    st.write("Ask any questions about basic digital skills, Word formatting, Excel formulas, or PowerPoint design!")
+    st.write("Ask any questions about basic digital skills, Excel formulas, Word formatting, PowerPoint, or workplace skills!")
 
     api_key = st.secrets.get("EJOCHAT_API_KEY", "")
     
@@ -115,7 +116,7 @@ elif st.session_state.current_page == "🤖 SkillsPulse AI Assistant":
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
 
-    if user_prompt := st.chat_input("Ask a question (e.g., 'How do I combine cells in Excel?' or 'How do I cite in Word?')..."):
+    if user_prompt := st.chat_input("Ask a question (e.g., 'How do I combine cells in Excel?' or 'Explain VLOOKUP')..."):
         st.chat_message("user").markdown(user_prompt)
         st.session_state.messages.append({"role": "user", "content": user_prompt})
 
@@ -156,18 +157,18 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
     st.write("In-depth practical lessons with real video training and hands-on work simulators.")
     
     category = st.selectbox(
-        "Select Active Learning Track:",
+        "Select Active Learning Course:",
         [
-            "💻 Computer Literacy & System Navigation",
-            "📝 Microsoft Word & Professional Writing",
-            "📊 Microsoft Excel & Data Analytics",
-            "🎨 Microsoft PowerPoint & Slide Design"
+            "💻 Computer Literacy",
+            "🤝 Communication & Workplace Collaboration",
+            "💼 Financial Literacy & Budgeting",
+            "🚀 Critical Thinking & Problem Solving"
         ],
         index=[
-            "💻 Computer Literacy & System Navigation",
-            "📝 Microsoft Word & Professional Writing",
-            "📊 Microsoft Excel & Data Analytics",
-            "🎨 Microsoft PowerPoint & Slide Design"
+            "💻 Computer Literacy",
+            "🤝 Communication & Workplace Collaboration",
+            "💼 Financial Literacy & Budgeting",
+            "🚀 Critical Thinking & Problem Solving"
         ].index(st.session_state.selected_module)
     )
     
@@ -175,291 +176,170 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
     st.divider()
     
     # -----------------------------------------------------
-    # TRACK 1: COMPUTER LITERACY
+    # MAIN COURSE: COMPUTER LITERACY (WITH SUB-COURSES)
     # -----------------------------------------------------
-    if category == "💻 Computer Literacy & System Navigation":
-        st.subheader("💻 Computer Literacy & System Navigation")
+    if category == "💻 Computer Literacy":
+        st.subheader("💻 Computer Literacy Suite")
+        st.write("Explore OS navigation along with specialized sub-modules for Microsoft Word, Excel (Main Focus), and PowerPoint.")
         
-        tab1, tab2, tab3 = st.tabs(["📖 In-Depth Practical Guide", "🎥 Video Tutorial", "✍️ Interactive Practical Simulator"])
-        
-        with tab1:
-            st.markdown("""
-            ### Complete Operating System & Navigation Architecture
-            
-            #### 1. Operating Systems & Hardware Infrastructure
-            * **CPU (Central Processing Unit)**: The brain of the computer executing software calculations.
-            * **RAM (Random Access Memory)**: High-speed temporary memory used when applications are actively running.
-            * **Storage (SSD / HDD)**: Permanent storage holding your Operating System (Windows / macOS / Linux), software programs, and personal files.
-            
-            #### 2. Directory Hierarchy & File Systems
-            A proper folder structure prevents lost work and boosts efficiency:
-            * **Root Directory**: The primary starting point (e.g., `C:\\`).
-            * **User Directories**: Pre-built folders (`Documents`, `Downloads`, `Pictures`, `Desktop`).
-            * **Best Practice Folder Formula**: `Main_Category / Year / Project_Name / File_v1.ext`
-              * *Example*: `Work_Projects / 2026 / Quarter_1_Report / Final_Draft.docx`
-            * **File Extensions to Know**:
-              * `.docx` (Microsoft Word Document)
-              * `.xlsx` (Microsoft Excel Spreadsheet)
-              * `.pptx` (Microsoft PowerPoint Presentation)
-              * `.pdf` (Portable Document Format - read-only layout standard)
-              * `.exe` / `.msi` (Executable Installation Programs — handle with care)
+        sub_module = st.selectbox(
+            "Select Computer Literacy Sub-Module:",
+            [
+                "⚙️ OS Basics & File System",
+                "📊 Microsoft Excel (Main Focus)",
+                "📝 Microsoft Word & Document Design",
+                "🎨 Microsoft PowerPoint & Presentations"
+            ]
+        )
+        st.divider()
 
-            #### 3. Master Keyboard Shortcut Reference Matrix
-            | Shortcut Command | Function / Action Performed |
-            | :--- | :--- |
-            | `Ctrl + C` | Copy selected item to clipboard |
-            | `Ctrl + X` | Cut selected item (removes from origin) |
-            | `Ctrl + V` | Paste copied or cut item |
-            | `Ctrl + Z` | Undo last operation |
-            | `Ctrl + Y` | Redo last undone operation |
-            | `Ctrl + S` | Save current file instantly |
-            | `Alt + Tab` | Switch actively running application windows |
-            | `Win + D` | Minimize all open windows and show Desktop |
-            | `Ctrl + Shift + Esc` | Direct launch Task Manager |
-            """)
+        # SUB-MODULE 1: OS BASICS
+        if sub_module == "⚙️ OS Basics & File System":
+            tab1, tab2, tab3 = st.tabs(["📖 In-Depth Practical Guide", "🎥 Video Tutorial", "✍️ Interactive Lab"])
             
-        with tab2:
-            st.write("#### Video Lesson: Computer Basics for Absolute Beginners")
-            st.video("https://www.youtube.com/watch?v=lxk2VaTaXgM")
-            st.caption("Video Source: Complete Computer Fundamentals & OS Navigation Lesson")
+            with tab1:
+                st.markdown("""
+                ### System Navigation & Desktop Mechanics
+                * **CPU vs RAM vs Storage**: Understanding hardware functions.
+                * **Folder Management**: Building structured naming conventions (`Category / Year / File_v1`).
+                * **Shortcuts**: `Ctrl+C` (Copy), `Ctrl+V` (Paste), `Ctrl+Z` (Undo), `Alt+Tab` (Switch apps).
+                """)
+            with tab2:
+                st.write("#### Video Lesson: Computer Basics for Absolute Beginners")
+                st.video("https://www.youtube.com/watch?v=lxk2VaTaXgM")
+            with tab3:
+                st.subheader("✍️ OS Navigation Check")
+                q1 = st.text_input("Type the shortcut to UNDO an action:", placeholder="e.g. Ctrl + Z")
+                if st.button("Submit Answer"):
+                    if q1.strip().lower().replace(" ", "") == "ctrl+z":
+                        st.success("Correct!")
+                    else:
+                        st.warning("Try again! (Hint: Ctrl + Z)")
+
+        # SUB-MODULE 2: MICROSOFT EXCEL (MAIN FOCUS)
+        elif sub_module == "📊 Microsoft Excel (Main Focus)":
+            tab1, tab2, tab3 = st.tabs(["📖 In-Depth Excel Masterclass", "🎥 Video Tutorial", "✍️ Interactive Formula Lab"])
             
-        with tab3:
-            st.subheader("✍️ Interactive Lab: Operating System Operations Simulator")
-            st.write("Solve the system navigation prompts below:")
-            
-            q1 = st.text_input("1. Type the precise shortcut key combination to UNDO an accidental deletion:", placeholder="e.g. Ctrl + Z")
-            q2 = st.selectbox("2. Which file extension represents a read-only document that preserves exact formatting across all devices?", ["-- Select --", ".docx", ".exe", ".pdf", ".xlsx"])
-            q3 = st.text_input("3. Type the shortcut to instantly switch between active windows on your computer:", placeholder="e.g. Alt + Tab")
-            
-            if st.button("Submit Computer Science Lab 🚀"):
-                score = 0
-                if q1.strip().lower().replace(" ", "") == "ctrl+z":
-                    score += 33
-                if q2 == ".pdf":
-                    score += 33
-                if q3.strip().lower().replace(" ", "") == "alt+tab":
-                    score += 34
+            with tab1:
+                st.markdown("""
+                ### 📊 Complete Microsoft Excel Masterclass
                 
-                if score >= 90:
-                    st.balloons()
-                    st.success(f"🏆 Score: {score}%! Perfect mastery of OS shortcuts and file extensions!")
-                else:
-                    st.warning(f"Score: {score}%. Review the shortcut matrix in Tab 1 and try again.")
+                #### 1. Core Spreadsheet Architecture
+                * **Columns (A-XFD)** & **Rows (1-1,048,576)** intersect to form **Cells** (e.g., `B5`).
+                * **Workbook**: The whole `.xlsx` file containing multiple **Worksheets**.
 
-    # -----------------------------------------------------
-    # TRACK 2: MICROSOFT WORD & WRITING
-    # -----------------------------------------------------
-    elif category == "📝 Microsoft Word & Professional Writing":
-        st.subheader("📝 Microsoft Word & Professional Writing")
-        
-        tab1, tab2, tab3 = st.tabs(["📖 In-Depth Practical Guide", "🎥 Video Tutorial", "✍️ Interactive Drafting Workshop"])
-        
-        with tab1:
-            st.markdown("""
-            ### Complete Document Formatting & Business Communication Blueprint
-            
-            #### 1. Microsoft Word Document Setup Rules
-            * **Typography**: Standard professional fonts are **Calibri, Arial, Times New Roman, or Garamond** (11pt - 12pt for body, 14pt - 18pt for headings).
-            * **Margins**: Use **Normal Margins** (1 inch / 2.54 cm on all sides) for professional documents and resumes.
-            * **Line Spacing**: Set to **1.15x or 1.5x** with 6pt space after paragraphs for clean readability.
-            * **Styles Ribbon**: Always use Word's built-in `Heading 1`, `Heading 2`, and `Title` styles to create automatic Tables of Contents.
+                #### 2. Essential Formula & Function Library
+                *All Excel formulas MUST start with an equals sign (`=`).*
 
-            #### 2. Structural Resume Blueprint
-            * **Header**: Full Name, Location (City/Country), Phone, Professional Email (`first.last@email.com`), LinkedIn URL.
-            * **Professional Summary**: 3 strong lines detailing current title, key technical skills, and value brought to a role.
-            * **Work Experience**: Reverse-chronological order. Bullet points MUST start with active verbs (*Spearheaded, Formatted, Orchestrated, Optimized*).
-            * **Education & Skills**: Degree/Diploma details and hard skills (e.g., MS Office Suite, Data Entry, Digital Security).
+                * **SUM**: Adds a range of numbers.  
+                  * `=SUM(B2:B20)`
+                * **AVERAGE**: Calculates arithmetic mean.  
+                  * `=AVERAGE(C1:C10)`
+                * **COUNT / COUNTA**: Counts numbers vs. non-empty cells.  
+                  * `=COUNT(A1:A50)`
+                * **IF Logic**: Returns custom values based on conditions.  
+                  * `=IF(C2>=5000, "Target Met", "Below Target")`
+                * **VLOOKUP**: Searches for a value in the first column and returns data from another column.  
+                  * `=VLOOKUP(Lookup_Value, Table_Array, Col_Index_Num, FALSE)`
+                * **MAX / MIN**: Finds highest or lowest number in a dataset.  
+                  * `=MAX(D1:D100)`
 
-            #### 3. Formal Email / Cover Letter Structure
-            ```text
-            SUBJECT: Application for [Job Title] - [Your Full Name]
-
-            Dear [Hiring Manager / Recruiter Name],
-
-            [PARAGRAPH 1: Statement of intent, position targeted, and source of job listing.]
-            [PARAGRAPH 2: 2-3 specific accomplishments with quantified results.]
-            [PARAGRAPH 3: Closing call to action expressing enthusiasm for an interview.]
-
-            Sincerely,
-            [Your Full Name]
-            ```
-            """)
-            
-        with tab2:
-            st.write("#### Video Lesson: How to Write a Winning Resume")
-            st.video("https://www.youtube.com/watch?v=R3abknwWX7k")
-            st.caption("Video Source: Professional Resume Writing Guide by Bryan Creely")
-            
-        with tab3:
-            st.subheader("✍️ Practical Workshop: Write a Professional Email Application")
-            st.write("Draft a formal application email using the lesson rules:")
-            
-            job_title = st.text_input("1. Target Job Position:", placeholder="e.g. Administrative Officer")
-            applicant_name = st.text_input("2. Your Full Name:", placeholder="e.g. Alex Morgan")
-            email_body = st.text_area(
-                "3. Write your Email Body (include statement of intent and key skills):",
-                height=150,
-                placeholder="Dear Hiring Manager,\n\nI am writing to express my strong interest in the Administrative Officer position..."
-            )
-            
-            if st.button("Analyze & Render Formal Document 📄"):
-                if len(email_body.strip()) < 50 or applicant_name.strip() == "":
-                    st.error("Please fill in all fields with complete detailed sentences.")
-                else:
-                    st.balloons()
-                    st.success("Your Formal Application Draft Has Been Generated!")
-                    st.markdown(f"""
-                    ---
-                    **SUBJECT:** Application for {job_title} - {applicant_name}  
-                    
-                    {email_body}  
-                    
-                    **Sincerely,**  
-                    **{applicant_name}**
-                    ---
-                    """)
-
-    # -----------------------------------------------------
-    # TRACK 3: MICROSOFT EXCEL
-    # -----------------------------------------------------
-    elif category == "📊 Microsoft Excel & Data Analytics":
-        st.subheader("📊 Microsoft Excel & Data Analytics")
-        
-        tab1, tab2, tab3 = st.tabs(["📖 In-Depth Practical Guide", "🎥 Video Tutorial", "✍️ Interactive Formula Lab"])
-        
-        with tab1:
-            st.markdown("""
-            ### Complete Spreadsheet Analytics & Formula Masterclass
-            
-            #### 1. Excel Grid Terminology & Navigation
-            * **Workbook vs Worksheet**: A workbook is the overall file (`.xlsx`); worksheets are individual tabbed sheets inside it.
-            * **Columns**: Identified by Letters (`A` through `XFD` — total 16,384 columns).
-            * **Rows**: Identified by Numbers (`1` through `1,048,576` rows).
-            * **Cell Reference**: The precise coordinate where a column and row intersect (e.g., `C15`).
-
-            #### 2. Essential Formula & Function Dictionary
-            *All formulas MUST begin with an equals sign (`=`).*
-            
-            | Function Name | Syntax Example | Description / Purpose |
-            | :--- | :--- | :--- |
-            | **SUM** | `=SUM(B2:B10)` | Adds all numerical values within the cell range B2 to B10. |
-            | **AVERAGE** | `=AVERAGE(C1:C20)` | Computes the arithmetic mean of specified cells. |
-            | **COUNT** | `=COUNT(A1:A50)` | Counts how many cells contain numbers. |
-            | **COUNTA** | `=COUNTA(A1:A50)` | Counts all non-empty cells (numbers + text). |
-            | **IF** | `=IF(D2>=50, "Pass", "Fail")` | Evaluates a logical condition and returns custom outputs. |
-            | **MAX / MIN** | `=MAX(E1:E10)` / `=MIN(E1:E10)` | Finds the absolute highest or lowest value in a range. |
-
-            #### 3. Data Visualization & Tables
-            * **Format as Table (`Ctrl + T`)**: Converts raw data into an interactive database with automatic sorting and filtering arrows.
-            * **Charts (`Alt + F1`)**: Highlight data and press shortcut to instantly generate a column chart visualization.
-            """)
-            
-        with tab2:
-            st.write("#### Video Lesson: Microsoft Excel Tutorial for Beginners")
-            st.video("https://www.youtube.com/watch?v=Ai0MV7twEBE")
-            st.caption("Video Source: Excel Beginners Step-by-Step Guide by Kevin Stratvert")
-            
-        with tab3:
-            st.subheader("✍️ Interactive Formula Lab: Live Spreadsheet Solver")
-            st.write("Analyze the employee sales database below and enter the correct Excel formulas:")
-            
-            st.table({
-                "Cell Row": ["Row 1", "Row 2", "Row 3", "Row 4", "Row 5"],
-                "Employee (Column A)": ["Sarah", "John", "David", "Grace", "Target Goal"],
-                "Sales Target (Column B)": [5000, 5000, 5000, 5000, "N/A"],
-                "Actual Sales (Column C)": [6200, 4800, 7100, 5500, "Calculate Below"]
-            })
-            
-            f1 = st.text_input("1. Type the exact Excel formula to calculate TOTAL Sales for C1 to C4:", placeholder="e.g. =SUM(C1:C4)")
-            f2 = st.text_input("2. Type the formula to find the AVERAGE sales made from C1 to C4:", placeholder="e.g. =AVERAGE(C1:C4)")
-            f3 = st.text_input("3. Write an IF formula for Sarah (Cell C1) returning 'Bonus' if Sales >= 5000 else 'No Bonus':", placeholder='e.g. =IF(C1>=5000, "Bonus", "No Bonus")')
-            
-            if st.button("Run Spreadsheet Calculation Engine 🧪"):
-                score = 0
-                clean_f1 = f1.strip().upper().replace(" ", "")
-                clean_f2 = f2.strip().upper().replace(" ", "")
-                clean_f3 = f3.strip().upper().replace(" ", "")
+                #### 3. Data Cleaning & Analysis
+                * **Format as Table (`Ctrl + T`)**: Adds auto-filtering and sorting.
+                * **Pivot Tables**: Summarize huge datasets into meaningful reports (`Insert > PivotTable`).
+                """)
+            with tab2:
+                st.write("#### Video Lesson: Microsoft Excel Complete Tutorial for Beginners")
+                st.video("https://www.youtube.com/watch?v=Ai0MV7twEBE")
+                st.caption("Video Source: Excel Beginners Step-by-Step Guide by Kevin Stratvert")
+            with tab3:
+                st.subheader("✍️ Interactive Formula Simulator")
+                st.table({
+                    "Employee": ["Sarah", "John", "David"],
+                    "Sales Goal": [5000, 5000, 5000],
+                    "Actual Sales": [6200, 4800, 7100]
+                })
+                f1 = st.text_input("1. Formula to sum all Actual Sales (Row 1 to 3 in Col C):", placeholder="e.g. =SUM(C1:C3)")
+                f2 = st.text_input("2. Formula to find AVERAGE sales in Col C:", placeholder="e.g. =AVERAGE(C1:C3)")
                 
-                if clean_f1 == "=SUM(C1:C4)":
-                    score += 33
-                if clean_f2 == "=AVERAGE(C1:C4)":
-                    score += 33
-                if 'IF(C1>=5000,"BONUS","NOBONUS")' in clean_f3:
-                    score += 34
-                
-                if score >= 90:
-                    st.balloons()
-                    st.success(f"🏆 100% Score! Calculated Total: $23,600 | Calculated Average: $5,900 | Logic Check: PASS!")
-                else:
-                    st.warning(f"Score: {score}%. Ensure your formulas start with '=' and use proper cell ranges like C1:C4.")
+                if st.button("Run Formula Engine 🧪"):
+                    if f1.strip().upper().replace(" ", "") == "=SUM(C1:C3)" and f2.strip().upper().replace(" ", "") == "=AVERAGE(C1:C3)":
+                        st.balloons()
+                        st.success("100% Correct! Calculations verified successfully.")
+                    else:
+                        st.warning("Double check your formulas! Make sure to use =SUM(C1:C3) and =AVERAGE(C1:C3).")
+
+        # SUB-MODULE 3: MICROSOFT WORD
+        elif sub_module == "📝 Microsoft Word & Document Design":
+            tab1, tab2, tab3 = st.tabs(["📖 Practical Guide", "🎥 Video Tutorial", "✍️ Cover Letter Simulator"])
+            
+            with tab1:
+                st.markdown("""
+                ### 📝 Microsoft Word & Document Formatting
+                * **Fonts & Margins**: Standard Calibri/Arial 11-12pt, 1-inch margins.
+                * **Styles Ribbon**: Use `Heading 1` and `Heading 2` for auto Table of Contents.
+                * **Resume Layout**: Reverse chronological structure starting with active verbs.
+                """)
+            with tab2:
+                st.write("#### Video Lesson: How to Write a Professional Resume")
+                st.video("https://www.youtube.com/watch?v=R3abknwWX7k")
+            with tab3:
+                st.subheader("✍️ Cover Letter Builder")
+                name = st.text_input("Your Full Name:")
+                body = st.text_area("Write a short intro paragraph:")
+                if st.button("Generate Document"):
+                    if name and body:
+                        st.success(f"Generated Document for {name}:\n\n{body}")
+
+        # SUB-MODULE 4: POWERPOINT
+        elif sub_module == "🎨 Microsoft PowerPoint & Presentations":
+            tab1, tab2, tab3 = st.tabs(["📖 Practical Guide", "🎥 Video Tutorial", "✍️ Slide Deck Builder"])
+            
+            with tab1:
+                st.markdown("""
+                ### 🎨 Slide Design & Presentation Rules
+                * **6x6 Rule**: Max 6 lines per slide, max 6 words per bullet.
+                * **10-20-30 Rule**: 10 slides, 20 minutes, 30pt font minimum.
+                * **Visual Contrast**: Dark text on light backgrounds or vice-versa.
+                """)
+            with tab2:
+                st.write("#### Video Lesson: Presentation & Slide Design Fundamentals")
+                st.video("https://www.youtube.com/watch?v=k1VUZEVuDJ8")
+            with tab3:
+                st.subheader("✍️ Slide Outline Builder")
+                st1 = st.text_input("Slide 1 Title:")
+                if st.button("Preview Slide"):
+                    st.info(f"Slide Preview: {st1}")
 
     # -----------------------------------------------------
-    # TRACK 4: MICROSOFT POWERPOINT
+    # OTHER ORIGINAL COURSES PRESERVED
     # -----------------------------------------------------
-    elif category == "🎨 Microsoft PowerPoint & Slide Design":
-        st.subheader("🎨 Microsoft PowerPoint & Slide Design")
-        
-        tab1, tab2, tab3 = st.tabs(["📖 In-Depth Practical Guide", "🎥 Video Tutorial", "✍️ Interactive Deck Designer"])
-        
-        with tab1:
-            st.markdown("""
-            ### Complete Presentation Design & Storytelling Masterclass
-            
-            #### 1. The 6x6 Rule of Professional Slide Design
-            * **Maximum 6 Lines**: Never exceed 6 bullet points per slide.
-            * **Maximum 6 Words**: Keep individual bullet points under 6 words where possible.
-            * **Contrast Principle**: Use high-contrast colors (Dark text on light background or Light text on dark background).
-            * **Visual Hierarchy**: Titles should be 32pt - 40pt bold; body text should be 18pt - 24pt.
+    elif category == "🤝 Communication & Workplace Collaboration":
+        st.subheader("🤝 Communication & Workplace Collaboration")
+        st.markdown("""
+        ### Professional Workplace Communication
+        * **Email Etiquette**: Professional subject lines, formal greetings, concise requests.
+        * **Active Listening**: Paraphrasing, avoiding interruptions, taking action items.
+        * **Conflict Resolution**: Focusing on facts rather than emotions in team settings.
+        """)
 
-            #### 2. The 10-20-30 Rule of Public Presentations
-            * **10 Slides**: The ideal length for a business or class presentation.
-            * **20 Minutes**: Maximum time to deliver the talk to keep audience engagement high.
-            * **30 Point Font**: Minimum font size used so everyone in the back of the room can read easily.
+    elif category == "💼 Financial Literacy & Budgeting":
+        st.subheader("💼 Financial Literacy & Budgeting")
+        st.markdown("""
+        ### Personal & Business Budgeting
+        * **50/30/20 Rule**: 50% Needs, 30% Wants, 20% Savings/Debt.
+        * **Income vs Expenses**: Tracking monthly cash flow using spreadsheets.
+        * **Emergency Funds**: Setting aside 3–6 months of living expenses.
+        """)
 
-            #### 3. Master Slide Deck Structure Framework
-            1. **Slide 1: Title Slide** (Topic, Presenter Name, Date).
-            2. **Slide 2: Problem Statement** (What real challenge are you solving?).
-            3. **Slide 3: Proposed Solution** (Your key takeaway or idea).
-            4. **Slide 4: Key Supporting Evidence / Data Chart**.
-            5. **Slide 5: Action Plan & Conclusion**.
-            """)
-            
-        with tab2:
-            st.write("#### Video Lesson: Fundamentals of Great Presentations")
-            st.video("https://www.youtube.com/watch?v=k1VUZEVuDJ8")
-            st.caption("Video Source: Beginner Interface and Layout Masterclass")
-            
-        with tab3:
-            st.subheader("✍️ Interactive Deck Builder Lab")
-            st.write("Design a 3-slide pitch outline using slide design rules:")
-            
-            slide1_title = st.text_input("Slide 1 Main Title:", placeholder="e.g. Digital Literacy in 2026")
-            slide2_bullet = st.text_input("Slide 2 Key Bullet Point (Apply 6-Word Rule):", placeholder="e.g. Digital skills increase workplace productivity dramatically")
-            slide3_callout = st.text_input("Slide 3 Call to Action:", placeholder="e.g. Join the SkillsPulse Academy Today")
-            
-            if st.button("Generate & Validate Slide Structure 🎨"):
-                word_count = len(slide2_bullet.strip().split())
-                if slide1_title == "" or slide3_callout == "":
-                    st.error("Please fill in all slide prompts.")
-                elif word_count > 8:
-                    st.warning(f"Your Slide 2 bullet has {word_count} words! Remember the 6x6 rule: keep bullet points concise.")
-                else:
-                    st.balloons()
-                    st.success("Slide Deck Outline Successfully Generated and Validated!")
-                    st.markdown(f"""
-                    ---
-                    ### 🖼️ Slide 1: Cover
-                    # {slide1_title}
-                    
-                    ---
-                    ### 🖼️ Slide 2: Core Concept
-                    * {slide2_bullet} *(Word Count: {word_count} - Concise!)*
-                    
-                    ---
-                    ### 🖼️ Slide 3: Action & Takeaway
-                    > **{slide3_callout}**
-                    ---
-                    """)
+    elif category == "🚀 Critical Thinking & Problem Solving":
+        st.subheader("🚀 Critical Thinking & Problem Solving")
+        st.markdown("""
+        ### Structured Decision-Making
+        * **5 Whys Methodology**: Root-cause analysis by repeatedly asking 'Why?'.
+        * **SWOT Analysis**: Strengths, Weaknesses, Opportunities, Threats.
+        * **Data-Driven Decisions**: Evaluating facts before reaching conclusions.
+        """)
 
 # ---------------------------------------------------------
 # 6. PAGE 4: SELF-ASSESSMENT & ROADMAP
@@ -472,11 +352,11 @@ elif st.session_state.current_page == "📝 Self-Assessment & Roadmap":
     user_name = st.text_input("Enter your full name:", placeholder="e.g. Jane Doe")
     selected_track = st.selectbox(
         "Select primary target focus area:", 
-        ["Computer Literacy", "Microsoft Word & Writing", "Microsoft Excel Data", "PowerPoint Presentation"]
+        ["Computer Literacy (Excel Focus)", "Communication", "Financial Literacy", "Critical Thinking"]
     )
     
     st.subheader("Step 2: Self-Evaluation")
-    level = st.radio("Current Confidence Level:", ["Beginner (Starting from scratch)", "Intermediate (Know simple usage)", "Advanced (Seeking mastery)"])
+    level = st.radio("Current Confidence Level:", ["Beginner", "Intermediate", "Advanced"])
     
     st.divider()
     
@@ -490,10 +370,10 @@ elif st.session_state.current_page == "📝 Self-Assessment & Roadmap":
             
             st.markdown("""
             #### 📌 Recommended Action Blueprint:
-            1. **Week 1 (Theory & Shortcuts):** Read the in-depth guides and memorize key shortcut matrices.
-            2. **Week 2 (Practical Application):** Complete all practical simulator labs in your chosen track.
-            3. **Week 3 (Project Build):** Produce a real Word document, Excel spreadsheet calculation, or PowerPoint deck.
-            4. **Week 4 (AI Review):** Use the SkillsPulse AI Tutor to test your knowledge with spot questions.
+            1. **Week 1:** Complete OS Basics & Keyboard Shortcuts.
+            2. **Week 2:** Master Excel formulas (`SUM`, `AVERAGE`, `IF`, `VLOOKUP`).
+            3. **Week 3:** Complete Microsoft Word & PowerPoint sub-modules.
+            4. **Week 4:** Take soft skill modules & use AI Assistant for spot checks.
             """)
 
 # ---------------------------------------------------------
@@ -502,7 +382,6 @@ elif st.session_state.current_page == "📝 Self-Assessment & Roadmap":
 elif st.session_state.current_page == "ℹ️ About Platform":
     st.title("ℹ️ About SkillsPulse Academy")
     st.write("SkillsPulse is an integrated learning management environment focused on practical digital literacy, workforce development, and hands-on software training.")
-    st.write("Built for interactive educational demonstrations, class presentations, and practical skills evaluation.")
 
 st.divider()
 st.caption("SkillsPulse Platform — All-in-One Practical Learning Dashboard")

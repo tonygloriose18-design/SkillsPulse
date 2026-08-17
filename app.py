@@ -15,13 +15,13 @@ page = st.sidebar.radio(
     [
         "🏠 Home Dashboard", 
         "🤖 SkillsPulse AI Assistant", 
-        "📚 Learning Modules", 
+        "📚 Learning Modules & Quiz Arena", 
         "📝 Self-Assessment & Roadmap", 
         "ℹ️ About Platform"
     ]
 )
 
-HERO_IMAGE_URL = "https://images.unsplash.com/photo-1773332585956-2d0e8ac80cb6?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+HERO_IMAGE_URL = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop"
 
 # 3. PAGE 1: HOME DASHBOARD
 if page == "🏠 Home Dashboard":
@@ -29,7 +29,7 @@ if page == "🏠 Home Dashboard":
     st.write("Welcome to your central hub for practical, everyday digital and professional skills.")
     
     try:
-        st.image(HERO_IMAGE_URL, caption="Empowering Everyday Learning", use_container_width=True)
+        st.image(HERO_IMAGE_URL, caption="Empowering Everyday Digital Learning", use_container_width=True)
     except:
         st.info("Image loading...")
         
@@ -38,25 +38,22 @@ if page == "🏠 Home Dashboard":
     st.header("⚡ Quick Dashboard Overview")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.metric(label="Active Modules", value="7 Topics")
+        st.metric(label="Active Modules", value="3 Core Tracks")
     with col2:
         st.metric(label="Difficulty Level", value="Beginner Friendly")
     with col3:
-        st.metric(label="Estimated Time", value="2 Hours / Module")
+        st.metric(label="Interactive Quizzes", value="Gamified Scoring")
     with col4:
         st.metric(label="Access Cost", value="100% Free")
 
     st.write("---")
-    st.subheader("💡 Featured Learning Tracks Today")
+    st.subheader("💡 Featured Tracks")
     c1, c2 = st.columns(2)
     with c1:
-        st.success("**💻 Digital Literacy**\n\nLearn essential computer navigation, internet search, and safe email practices.")
-        st.info("**📄 Professional Writing**\n\nBuild job-ready resumes, cover letters, and formal communication skills.")
-        st.success("**🛠️ Troubleshooting & Tech Basics**\n\nFix common software glitches, manage storage, and understand system settings.")
+        st.success("**💻 Digital & Computer Literacy**\n\nLearn essential computer navigation, file management, and internet safety.")
+        st.info("**📄 Professional Resume Writing**\n\nBuild job-ready resumes, cover letters, and formal application emails.")
     with c2:
-        st.warning("**📊 Essential Office Tools**\n\nMaster spreadsheets (Excel), document design (Docs), and slideshows (Slides).")
-        st.error("**🔒 Digital Security**\n\nProtect your accounts, avoid online scams, and secure personal information.")
-        st.info("**🌐 Remote Collaboration & AI Tools**\n\nMaster Zoom, Google Workspace, and basic AI productivity helpers.")
+        st.warning("**📊 Office Tools & Spreadsheets**\n\nMaster basic spreadsheets, document design, and digital collaboration.")
 
 # 4. PAGE 2: AI CHATBOT ASSISTANT
 elif page == "🤖 SkillsPulse AI Assistant":
@@ -109,126 +106,154 @@ elif page == "🤖 SkillsPulse AI Assistant":
             except Exception as err:
                 st.error(f"Connection error: {err}")
 
-# 5. PAGE 3: LEARNING MODULES
-elif page == "📚 Learning Modules":
-    st.title("📚 Interactive Learning Modules")
-    st.write("Select a topic below to access structured guides, video tutorials, and practical exercises.")
+# 5. PAGE 3: LEARNING MODULES & GAMIFIED QUIZ ARENA
+elif page == "📚 Learning Modules & Quiz Arena":
+    st.title("📚 Interactive Learning Modules & Quiz Arena")
+    st.write("Select a topic to read real guides, watch tutorial media, and challenge yourself in the interactive quiz arena!")
     
     category = st.selectbox(
-        "Choose a module to explore:",
+        "Choose a module track:",
         [
-            "💻 Basic Computer & Internet Literacy",
+            "💻 Basic Computer Literacy & Shortcut Mastery",
             "📄 Professional Writing & Resume Building",
-            "📊 Essential Tools (Excel, Docs & Slides)",
-            "🗣️ Communication & Workplace Soft Skills",
-            "🔒 Online Safety & Digital Security",
-            "🛠️ Tech Troubleshooting & System Maintenance",
-            "🌐 Remote Work & Digital Collaboration Tools"
+            "📊 Excel & Spreadsheets Essentials"
         ]
     )
     
     st.divider()
     
-    if category == "💻 Basic Computer & Internet Literacy":
-        st.subheader("💻 Computer & Internet Basics")
+    # TRACK 1
+    if category == "💻 Basic Computer Literacy & Shortcut Mastery":
+        st.subheader("💻 Basic Computer Literacy & Shortcut Mastery")
         
-        tab1, tab2, tab3 = st.tabs(["🎥 Video Lesson", "📖 Reading & Steps", "📥 Resources"])
+        tab1, tab2, tab3 = st.tabs(["📖 Real Guide & Steps", "🎥 Video Tutorial", "🎮 Interactive Quiz Challenge"])
         
         with tab1:
-            st.write("#### Watch: Master Computer Navigation")
-            st.video("https://www.youtube.com/watch?v=y2K1qI_N7S4")
+            st.markdown("""
+            ### Key Concepts to Master:
+            1. **File Management:** Keep your desktop clean. Create folder hierarchies like `Documents/Work/2026/`.
+            2. **Essential System Shortcuts:**
+               * `Ctrl + C` (Copy) & `Ctrl + V` (Paste)
+               * `Ctrl + Z` (Undo accidental actions)
+               * `Alt + Tab` (Switch between open windows)
+            3. **Browser Basics:** Use bookmarks (`Ctrl + D`) to save important websites.
+            """)
             
         with tab2:
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.info("**Module A: Navigation**\n\n• OS basics & desktop management\n• Organizing folders & files\n• Web browser navigation")
-            with col2:
-                st.info("**Module B: Email Setup**\n\n• Creating professional emails\n• Structuring clear messages\n• Sending attachments safely")
-            with col3:
-                st.info("**Module C: Web Search**\n\n• Google search strategies\n• Identifying trusted websites\n• Downloading documents")
-                
+            st.write("#### Demonstration Video")
+            # Reliable fallback MP4 stream
+            st.video("https://www.w3schools.com/html/mov_bbb.mp4")
+            st.caption("Note: Interactive video player streams directly within Streamlit.")
+            
         with tab3:
-            st.write("#### Download Practice Cheat Sheet")
-            sample_guide = "Keyboard Shortcuts Cheat Sheet:\n- Ctrl+C: Copy\n- Ctrl+V: Paste\n- Ctrl+Z: Undo\n- Ctrl+S: Save"
-            st.download_button(
-                label="📄 Download Shortcuts Guide (TXT)",
-                data=sample_guide,
-                file_name="computer_basics_cheat_sheet.txt",
-                mime="text/plain"
+            st.subheader("🎮 Skill Challenge: Computer Basics")
+            st.write("Test your memory to earn your digital badge!")
+            
+            q1 = st.radio(
+                "Question 1: Which keyboard shortcut allows you to undo an accidental mistake?",
+                ["Ctrl + P", "Ctrl + Z", "Ctrl + S", "Alt + F4"],
+                key="c_q1"
             )
+            
+            q2 = st.radio(
+                "Question 2: What is the best practice for organizing digital files?",
+                ["Leave everything on the desktop", "Create named folders and subfolders", "Delete files after 1 day", "Save all files as images"],
+                key="c_q2"
+            )
+            
+            if st.button("Submit Computer Literacy Quiz 🚀"):
+                score = 0
+                if q1 == "Ctrl + Z":
+                    score += 50
+                if q2 == "Create named folders and subfolders":
+                    score += 50
+                
+                if score == 100:
+                    st.balloons()
+                    st.success(f"🏆 Perfect Score: {score}/100! You mastered Computer Basics!")
+                else:
+                    st.warning(f" You scored {score}/100. Review the reading tab and try again!")
 
+    # TRACK 2
     elif category == "📄 Professional Writing & Resume Building":
-        st.subheader("📄 Resume & Professional Writing")
+        st.subheader("📄 Professional Writing & Resume Building")
         
-        tab1, tab2, tab3 = st.tabs(["🎥 Video Lesson", "📖 Reading & Steps", "📥 Resources"])
+        tab1, tab2, tab3 = st.tabs(["📖 Real Guide & Steps", "🎥 Video Tutorial", "🎮 Interactive Quiz Challenge"])
         
         with tab1:
-            st.write("#### Watch: How to Write a Winning Resume")
-            st.video("https://www.youtube.com/watch?v=ttWk4n0edgg")
+            st.markdown("""
+            ### Anatomy of a Great Resume:
+            * **Contact Header:** Full name, clean professional email, mobile phone number.
+            * **Professional Summary:** 2–3 sentences highlighting your strong work ethic and goal.
+            * **Work / Practical Experience:** Action-oriented bullet points starting with verbs like *Managed*, *Created*, *Supported*.
+            * **Education & Skills:** Technical certifications, languages, and core soft skills.
+            """)
             
         with tab2:
-            col1, col2 = st.columns(2)
-            with col1:
-                st.success("**Resume Builder Guide**\n\n• Summary writing\n• Listing practical experience\n• Clean formatting templates")
-            with col2:
-                st.success("**Cover Letters & Emails**\n\n• Application letter layouts\n• Tailoring experience to jobs\n• Professional follow-ups")
-                
+            st.write("#### Demonstration Video")
+            st.video("https://www.w3schools.com/html/mov_bbb.mp4")
+            
         with tab3:
-            st.write("#### Download Sample Templates")
-            resume_template = "FIRST NAME LAST NAME\nEmail: example@email.com\n\nPROFESSIONAL SUMMARY\nDedicated professional with background in..."
-            st.download_button(
-                label="📄 Download Starter Resume Template (TXT)",
-                data=resume_template,
-                file_name="resume_template.txt",
-                mime="text/plain"
+            st.subheader("🎮 Skill Challenge: Resume Mastery")
+            
+            rq1 = st.radio(
+                "Question 1: Which of the following is the most professional email address format?",
+                ["cool_gamer99@gmail.com", "first.last@email.com", "unknown_user_123@yahoo.com"],
+                key="r_q1"
             )
+            
+            rq2 = st.radio(
+                "Question 2: Bullet points in your experience section should start with...",
+                ["Strong action verbs", "The word 'I'", "Random adjectives", "Dates only"],
+                key="r_q2"
+            )
+            
+            if st.button("Submit Resume Quiz 🚀"):
+                r_score = 0
+                if rq1 == "first.last@email.com":
+                    r_score += 50
+                if rq2 == "Strong action verbs":
+                    r_score += 50
+                
+                if r_score == 100:
+                    st.balloons()
+                    st.success(f"🏆 Perfect Score: {r_score}/100! You are ready to build top resumes!")
+                else:
+                    st.warning(f" Score: {r_score}/100. Check the guide tab to review!")
 
-    elif category == "📊 Essential Tools (Excel, Docs & Slides)":
-        st.subheader("📊 Essential Office Applications")
-        tab1, tab2 = st.tabs(["🎥 Video Lesson", "📖 Reading & Steps"])
+    # TRACK 3
+    elif category == "📊 Excel & Spreadsheets Essentials":
+        st.subheader("📊 Excel & Spreadsheets Essentials")
+        
+        tab1, tab2, tab3 = st.tabs(["📖 Real Guide & Steps", "🎥 Video Tutorial", "🎮 Interactive Quiz Challenge"])
+        
         with tab1:
-            st.write("#### Watch: Excel Basics for Beginners")
-            st.video("https://www.youtube.com/watch?v=rwbho0CgEAE")
+            st.markdown("""
+            ### Essential Formulas & Functions:
+            * `=SUM(A1:A10)` — Adds all numbers in cells A1 through A10.
+            * `=AVERAGE(B1:B5)` — Calculates the mean value of cells B1 through B5.
+            * **Columns** run vertically (A, B, C) while **Rows** run horizontally (1, 2, 3).
+            """)
+            
         with tab2:
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.warning("**Word Docs**\n\n• Document formatting\n• Tables & headers\n• Exporting to PDF")
-            with col2:
-                st.warning("**Spreadsheets**\n\n• Data entry basics\n• SUM & AVERAGE formulas\n• Simple visual charts")
-            with col3:
-                st.warning("**Presentations**\n\n• Creating clean slides\n• Content structure\n• Visual design tips")
-
-    elif category == "🗣️ Communication & Workplace Soft Skills":
-        st.subheader("🗣️ Soft Skills & Workplace Habits")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.info("**Interpersonal Skills**\n\n• Active listening\n• Teamwork basics\n• Clear verbal communication")
-        with col2:
-            st.info("**Time Management**\n\n• Prioritizing tasks\n• Setting daily goals\n• Meeting deadlines")
-
-    elif category == "🔒 Online Safety & Digital Security":
-        st.subheader("🔒 Online Safety & Privacy")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.error("**Account Protection**\n\n• Creating strong passwords\n• Setting up 2FA\n• Spotting phishing emails")
-        with col2:
-            st.error("**Privacy Rules**\n\n• Social media privacy\n• Safe public Wi-Fi habits\n• Avoiding fake website scams")
-
-    elif category == "🛠️ Tech Troubleshooting & System Maintenance":
-        st.subheader("🛠️ Tech Troubleshooting Basics")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.success("**Device Maintenance**\n\n• Clearing cache & temporary files\n• Managing storage space\n• Restarting frozen applications")
-        with col2:
-            st.success("**Connectivity Issues**\n\n• Resetting Wi-Fi routers\n• Checking network adapter settings\n• Managing browser extensions")
-
-    elif category == "🌐 Remote Work & Digital Collaboration Tools":
-        st.subheader("🌐 Remote Collaboration Tools")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.warning("**Virtual Meetings**\n\n• Zoom & Google Meet etiquette\n• Screen sharing controls\n• Mic & camera configuration")
-        with col2:
-            st.warning("**Cloud Storage**\n\n• Google Drive & OneDrive basics\n• Sharing permissions\n• Real-time collaborative editing")
+            st.write("#### Demonstration Video")
+            st.video("https://www.w3schools.com/html/mov_bbb.mp4")
+            
+        with tab3:
+            st.subheader("🎮 Skill Challenge: Spreadsheet Math")
+            
+            eq1 = st.radio(
+                "Question 1: Which formula adds values together in cells A1 through A5?",
+                ["=TOTAL(A1:A5)", "=SUM(A1:A5)", "=ADD(A1:A5)"],
+                key="e_q1"
+            )
+            
+            if st.button("Submit Excel Quiz 🚀"):
+                if eq1 == "=SUM(A1:A5)":
+                    st.balloons()
+                    st.success("🏆 Correct! `=SUM(A1:A5)` is the standard addition function!")
+                else:
+                    st.error("Incorrect formula. Remember all math operations in Excel use =SUM()!")
 
 # 6. PAGE 4: SELF-ASSESSMENT & ROADMAP
 elif page == "📝 Self-Assessment & Roadmap":
@@ -239,7 +264,7 @@ elif page == "📝 Self-Assessment & Roadmap":
     user_name = st.text_input("Enter your name:", placeholder="e.g., Student")
     selected_track = st.selectbox(
         "Select target learning area:", 
-        ["Digital Literacy", "Resume & Writing", "Office Tools", "Soft Skills", "Cyber Safety", "Tech Troubleshooting", "Remote Tools"]
+        ["Digital Literacy", "Resume & Writing", "Office Tools"]
     )
     
     st.subheader("Step 2: Current Experience Level")

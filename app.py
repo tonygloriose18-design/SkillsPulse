@@ -1,5 +1,5 @@
 import streamlit as st
-from openai import OpenAI
+import requests
 
 # 1. Page Setup & Configuration
 st.set_page_config(
@@ -21,7 +21,6 @@ page = st.sidebar.radio(
     ]
 )
 
-# Custom Unsplash Image URL
 HERO_IMAGE_URL = "https://images.unsplash.com/photo-1773332585956-2d0e8ac80cb6?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 
 # 3. PAGE 1: HOME DASHBOARD
@@ -29,7 +28,6 @@ if page == "🏠 Home Dashboard":
     st.title("📚 SkillsPulse: Essential Skills Academy")
     st.write("Welcome to your central hub for practical, everyday digital and professional skills.")
     
-    # Display Hero Image
     try:
         st.image(HERO_IMAGE_URL, caption="Empowering Everyday Learning", use_container_width=True)
     except:
@@ -37,7 +35,6 @@ if page == "🏠 Home Dashboard":
         
     st.divider()
     
-    # Overview Metrics / Cards
     st.header("⚡ Quick Dashboard Overview")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
@@ -61,50 +58,56 @@ if page == "🏠 Home Dashboard":
         st.error("**🔒 Digital Security**\n\nProtect your accounts, avoid online scams, and secure personal information.")
         st.info("**🌐 Remote Collaboration & AI Tools**\n\nMaster Zoom, Google Workspace, and basic AI productivity helpers.")
 
-# 4. PAGE 2: AI CHATBOT ASSISTANT
+# 4. PAGE 2: AI CHATBOT ASSISTANT (EjoChat REST API Integration)
 elif page == "🤖 SkillsPulse AI Assistant":
     st.title("🤖 SkillsPulse AI Tutor")
     st.write("Ask any questions about basic digital skills, document formatting, or resume writing!")
 
-    # Initialize OpenAI Client safely using Streamlit secrets
-    try:
-        api_key = st.secrets["OPENAI_API_KEY"]
-        base_url = st.secrets.get("OPENAI_BASE_URL", "https://api.openai.com/v1")
-        client = OpenAI(api_key=api_key, base_url=base_url)
-    except Exception as e:
-        st.error("Please configure your secrets in Streamlit Cloud to activate the AI tutor.")
+    api_key = st.secrets.get("EJOCHAT_API_KEY", "")
+    
+    if not api_key:
+        st.error("Please configure EJOCHAT_API_KEY in Streamlit Cloud secrets.")
         st.stop()
 
-    # Initialize Chat History
     if "messages" not in st.session_state:
-        st.session_state.messages = [
-            {"role": "system", "content": "You are a helpful, encouraging tutor for SkillsPulse. You specialize in teaching basic digital skills, email communication, office software, and resume building in simple terms."}
-        ]
+        st.session_state.messages = []
 
-    # Display Chat Messages
     for msg in st.session_state.messages:
-        if msg["role"] != "system":
-            with st.chat_message(msg["role"]):
-                st.markdown(msg["content"])
+        with st.chat_message(msg["role"]):
+            st.markdown(msg["content"])
 
-    # Accept User Input
     if user_prompt := st.chat_input("Ask a question (e.g., 'How do I create a table in Word?')..."):
         st.chat_message("user").markdown(user_prompt)
         st.session_state.messages.append({"role": "user", "content": user_prompt})
 
         with st.chat_message("assistant"):
             message_placeholder = st.empty()
+            headers = {
+                "X-API-Key": api_key,
+                "Content-Type": "application/json"
+            }
+            payload = {
+                "messages": st.session_state.messages
+            }
+
             try:
-                response = client.chat.completions.create(
-                    model="gpt-3.5-turbo",
-                    messages=st.session_state.messages,
-                    temperature=0.7
+                response = requests.post(
+                    "https://api.ejolabs.com/api/v1/subiza",
+                    json=payload,
+                    headers=headers,
+                    timeout=15
                 )
-                assistant_reply = response.choices[0].message.content
-                message_placeholder.markdown(assistant_reply)
-                st.session_state.messages.append({"role": "assistant", "content": assistant_reply})
+
+                if response.status_code == 200:
+                    data = response.json()
+                    assistant_reply = data.get("reply") or data.get("message") or data.get("choices", [{}])[0].get("message", {}).get("content", str(data))
+                    message_placeholder.markdown(assistant_reply)
+                    st.session_state.messages.append({"role": "assistant", "content": assistant_reply})
+                else:
+                    st.error(f"API Error ({response.status_code}): {response.text}")
+
             except Exception as err:
-                st.error(f"Error connecting to AI service: {err}")
+                st.error(f"Connection error: {err}")
 
 # 5. PAGE 3: LEARNING MODULES
 elif page == "📚 Learning Modules":
@@ -224,6 +227,5 @@ elif page == "ℹ️ About Platform":
     st.write("SkillsPulse is designed to make practical skill learning accessible, structured, and straightforward for everyone.")
     st.write("Designed for class presentations and practical skill demonstration.")
 
-# Footer across all pages
 st.divider()
 st.caption("SkillsPulse Platform — All-in-One Practical Learning Dashboard")

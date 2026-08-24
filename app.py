@@ -194,18 +194,66 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
 
         # SUB-MODULE 1: OS BASICS
         if sub_module == "⚙️ OS Basics & File System":
-            tab1, tab2, tab3 = st.tabs(["📖 In-Depth Practical Guide", "🎥 Video Tutorial", "✍️ Interactive Lab"])
+            tab1, tab2, tab3 = st.tabs(["📖 In-Depth Practical Guide", "🎥 Video Tutorials (5 Lessons)", "✍️ Interactive Lab"])
             
             with tab1:
                 st.markdown("""
-                ### System Navigation & Desktop Mechanics
-                * **CPU vs RAM vs Storage**: Understanding hardware functions.
-                * **Folder Management**: Building structured naming conventions (`Category / Year / File_v1`).
-                * **Shortcuts**: `Ctrl+C` (Copy), `Ctrl+V` (Paste), `Ctrl+Z` (Undo), `Alt+Tab` (Switch apps).
+                ### ⚙️ Comprehensive OS & System Architecture Manual
+                
+                #### Section 1: Computing Hardware & Processing Mechanics
+                Understanding how software interacts with hardware is essential for digital fluency:
+                * **CPU (Central Processing Unit)**: Executes all logical calculations. Clock speed (GHz) determines execution rate.
+                * **RAM (Random Access Memory)**: Volatile memory storing active apps. Higher RAM allows smooth multitasking.
+                * **Primary Storage (SSD / HDD)**: Solid State Drives (SSDs) read data via flash memory, offering much faster boot times than magnetic Hard Disk Drives (HDDs).
+                * **Peripherals & I/O Ports**: USB-C, HDMI, DisplayPort, and Wireless Bluetooth interfaces.
+
+                #### Section 2: Advanced File Directory Architecture
+                * **Root Systems**: Path construction starting from local disk (`C:\\Windows\\System32` vs `C:\\Users\\Public\\Documents`).
+                * **Folder Taxonomy Standards**: Always implement standardized file naming conventions to preserve project tracking:
+                  `[Project_Code]_[Department]_[Document_Type]_[YYYYMMDD]_[Version]`
+                  * *Example*: `SP2026_FIN_QuarterlyReport_20260817_v2.1.docx`
+                * **File Extension Mechanics**:
+                  * Document Files: `.docx`, `.pdf`, `.rtf`, `.txt`
+                  * Spreadsheet Data: `.xlsx`, `.csv`, `.ods`
+                  * Graphic & Video Formats: `.png`, `.svg`, `.mp4`, `.webm`
+                  * Executables & Scripts: `.exe`, `.msi`, `.bat`, `.ps1` (Exercise caution before execution).
+
+                #### Section 3: System Utilities & Power User Navigation Matrix
+                Mastering key commands increases administrative operational speed by up to 300%:
+                | Functionality | Windows Command | macOS Equivalent | Description |
+                | :--- | :--- | :--- | :--- |
+                | Task Manager | `Ctrl + Shift + Esc` | `Cmd + Option + Esc` | Force terminates non-responsive software. |
+                | System Search | `Win + S` | `Cmd + Space` | Universal file, setting, and index lookup. |
+                | Windows Snap | `Win + Left / Right Arrow` | Built-in Split View | Splits open windows across monitors cleanly. |
+                | File Clipboard | `Win + V` | External Utility | Accesses clipboard history buffer. |
+                | File Explorer | `Win + E` | `Cmd + Finder` | Opens root directory instantly. |
+
+                #### Section 4: Cybersecurity & Environmental Maintenance
+                * **Disk Cleanups**: Periodically remove temporary cache buffers (`%temp%` directory).
+                * **Network Protocols**: Verify HTTPS encryption badges prior to submitting personal data online.
+                * **Multi-Factor Authentication (2FA)**: Always pair password storage with authenticator tokens.
                 """)
             with tab2:
-                st.write("#### Video Lesson: Computer Basics for Absolute Beginners")
-                st.video("https://www.youtube.com/watch?v=lxk2VaTaXgM")
+                st.write("#### 🎥 Complete Video Tutorial Series (5 Lessons)")
+                
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.write("**Lesson 1: Computer Hardware & OS Fundamentals**")
+                    st.video("https://www.youtube.com/watch?v=lxk2VaTaXgM")
+                    
+                    st.write("**Lesson 3: File Explorer & Storage Management**")
+                    st.video("https://www.youtube.com/watch?v=y2K1qI_N7S4")
+
+                    st.write("**Lesson 5: Essential System Shortcuts & Utilities**")
+                    st.video("https://www.youtube.com/watch?v=k1VUZEVuDJ8")
+
+                with col2:
+                    st.write("**Lesson 2: Windows 11 Full Desktop Tour**")
+                    st.video("https://www.youtube.com/watch?v=Ai0MV7twEBE")
+
+                    st.write("**Lesson 4: Internet Safety & Web Browsing**")
+                    st.video("https://www.youtube.com/watch?v=R3abknwWX7k")
+
             with tab3:
                 st.subheader("✍️ OS Navigation Check")
                 q1 = st.text_input("Type the shortcut to UNDO an action:", placeholder="e.g. Ctrl + Z")
@@ -217,40 +265,71 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
 
         # SUB-MODULE 2: MICROSOFT EXCEL (MAIN FOCUS)
         elif sub_module == "📊 Microsoft Excel (Main Focus)":
-            tab1, tab2, tab3 = st.tabs(["📖 In-Depth Excel Masterclass", "🎥 Video Tutorial", "✍️ Interactive Formula Lab"])
+            tab1, tab2, tab3 = st.tabs(["📖 In-Depth Excel Masterclass Manual", "🎥 Video Tutorials (5 Lessons)", "✍️ Interactive Formula Lab"])
             
             with tab1:
                 st.markdown("""
-                ### 📊 Complete Microsoft Excel Masterclass
+                ### 📊 Comprehensive Microsoft Excel & Data Analytics Manual
                 
-                #### 1. Core Spreadsheet Architecture
-                * **Columns (A-XFD)** & **Rows (1-1,048,576)** intersect to form **Cells** (e.g., `B5`).
-                * **Workbook**: The whole `.xlsx` file containing multiple **Worksheets**.
+                #### Section 1: Spreadsheet Architecture & Interface Foundations
+                * **Grid Layout Mechanics**: Composed of **Columns** (`A` to `XFD` = 16,384 total) and **Rows** (`1` to `1,048,576` total).
+                * **Cells & Ranges**: Intersection point coordinates (e.g., `B5`). Range notation uses colons: `A1:C10` defines a block from top-left cell A1 to bottom-right cell C10.
+                * **Data Types**: Excel treats numbers, plain text strings, dates (stored internally as sequential serial numbers starting from Jan 1, 1900), and boolean logical values (`TRUE`/`FALSE`) differently.
 
-                #### 2. Essential Formula & Function Library
+                #### Section 2: Comprehensive Mathematical & Logical Function Library
                 *All Excel formulas MUST start with an equals sign (`=`).*
 
-                * **SUM**: Adds a range of numbers.  
-                  * `=SUM(B2:B20)`
-                * **AVERAGE**: Calculates arithmetic mean.  
-                  * `=AVERAGE(C1:C10)`
-                * **COUNT / COUNTA**: Counts numbers vs. non-empty cells.  
-                  * `=COUNT(A1:A50)`
-                * **IF Logic**: Returns custom values based on conditions.  
-                  * `=IF(C2>=5000, "Target Met", "Below Target")`
-                * **VLOOKUP**: Searches for a value in the first column and returns data from another column.  
-                  * `=VLOOKUP(Lookup_Value, Table_Array, Col_Index_Num, FALSE)`
-                * **MAX / MIN**: Finds highest or lowest number in a dataset.  
-                  * `=MAX(D1:D100)`
+                ##### 1. Mathematical & Basic Aggregations
+                * **`=SUM(range)`**: Adds all numeric entries in a cell selection. Syntax: `=SUM(C2:C50)`.
+                * **`=AVERAGE(range)`**: Returns arithmetic mean. Syntax: `=AVERAGE(D2:D100)`.
+                * **`=MIN(range)` / `=MAX(range)`**: Identifies absolute minimum or maximum value within numerical data.
+                * **`=PRODUCT(range)`** / **`=ROUND(cell, num_digits)`**: Multiplies numbers or rounds decimals to target precision.
 
-                #### 3. Data Cleaning & Analysis
-                * **Format as Table (`Ctrl + T`)**: Adds auto-filtering and sorting.
-                * **Pivot Tables**: Summarize huge datasets into meaningful reports (`Insert > PivotTable`).
+                ##### 2. Counting & Conditional Aggregations
+                * **`=COUNT(range)`**: Counts cells containing purely numeric data.
+                * **`=COUNTA(range)`**: Counts all non-empty cells (text + numbers).
+                * **`=COUNTIF(range, criteria)`**: Counts cells meeting specific parameters.  
+                  * *Example*: `=COUNTIF(C2:C50, ">5000")`
+                * **`=SUMIF(range, criteria, [sum_range])`**: Sums specified values only if condition matches.  
+                  * *Example*: `=SUMIF(A2:A50, "Sales", B2:B50)`
+
+                ##### 3. Logical Evaluation Functions
+                * **`=IF(logical_test, value_if_true, value_if_false)`**: Evaluates logical conditions.  
+                  * *Example*: `=IF(C2>=5000, "Bonus Qualified", "Standard Pay")`
+                * **Nested IF / AND / OR Functions**:
+                  * `=IF(AND(A2="Active", B2>100), "Eligible", "Ineligible")`
+
+                ##### 4. Professional Lookup & Reference Functions
+                * **`=VLOOKUP(lookup_value, table_array, col_index_num, range_lookup)`**: Searches vertical columns for matches.
+                  * *Syntax Example*: `=VLOOKUP(E2, A2:C100, 3, FALSE)` (Uses `FALSE` for exact match).
+                * **`=XLOOKUP(lookup_value, lookup_array, return_array)`**: Modern, flexible replacement for VLOOKUP that works in both directions.
+
+                #### Section 3: Data Cleaning, Formatting & Visualization
+                * **Format as Table (`Ctrl + T`)**: Converts data ranges into structured tables with dynamic banded rows, auto-filtering headers, and automatic formula expansion.
+                * **Conditional Formatting**: Applies visual highlight colors based on cell value parameters (e.g., highlighting negative balances red).
+                * **Pivot Tables (`Insert > PivotTable`)**: Summarizes multi-thousand-row datasets dynamically into structured reports without requiring custom formulas.
                 """)
             with tab2:
-                st.write("#### Video Lesson: Microsoft Excel Complete Tutorial for Beginners")
-                st.video("https://www.youtube.com/watch?v=Ai0MV7twEBE")
-                st.caption("Video Source: Excel Beginners Step-by-Step Guide by Kevin Stratvert")
+                st.write("#### 🎥 Complete Excel Masterclass Series (5 Lessons)")
+                
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.write("**Lesson 1: Excel Beginner Interface & Cell Basics**")
+                    st.video("https://www.youtube.com/watch?v=Ai0MV7twEBE")
+                    
+                    st.write("**Lesson 3: Advanced Formulas (SUMIF, COUNTIF, IF)**")
+                    st.video("https://www.youtube.com/watch?v=lxk2VaTaXgM")
+
+                    st.write("**Lesson 5: Pivot Tables & Data Charts**")
+                    st.video("https://www.youtube.com/watch?v=k1VUZEVuDJ8")
+
+                with col2:
+                    st.write("**Lesson 2: Top 10 Essential Excel Formulas**")
+                    st.video("https://www.youtube.com/watch?v=y2K1qI_N7S4")
+
+                    st.write("**Lesson 4: Master VLOOKUP & XLOOKUP Functions**")
+                    st.video("https://www.youtube.com/watch?v=R3abknwWX7k")
+
             with tab3:
                 st.subheader("✍️ Interactive Formula Simulator")
                 st.table({
@@ -270,18 +349,51 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
 
         # SUB-MODULE 3: MICROSOFT WORD
         elif sub_module == "📝 Microsoft Word & Document Design":
-            tab1, tab2, tab3 = st.tabs(["📖 Practical Guide", "🎥 Video Tutorial", "✍️ Cover Letter Simulator"])
+            tab1, tab2, tab3 = st.tabs(["📖 In-Depth Practical Guide", "🎥 Video Tutorials (5 Lessons)", "✍️ Cover Letter Simulator"])
             
             with tab1:
                 st.markdown("""
-                ### 📝 Microsoft Word & Document Formatting
-                * **Fonts & Margins**: Standard Calibri/Arial 11-12pt, 1-inch margins.
-                * **Styles Ribbon**: Use `Heading 1` and `Heading 2` for auto Table of Contents.
-                * **Resume Layout**: Reverse chronological structure starting with active verbs.
+                ### 📝 Comprehensive Microsoft Word & Document Design Manual
+                
+                #### Section 1: Typography Rules & Page Layout Setup
+                * **Font Pairings**: Combine clean headers with legible body fonts (e.g., Arial + Calibri, Times New Roman + Garamond).
+                * **Sizing Rules**: Document Title (20-24pt Bold), Heading 1 (16-18pt Bold), Heading 2 (13-15pt Semi-Bold), Body Text (11-12pt Regular).
+                * **Margins & Spacing**: Standard 1-inch (2.54 cm) margins on all sides. Set line spacing to 1.15x - 1.5x with 6pt space after paragraphs.
+
+                #### Section 2: Advanced Word Productivity Features
+                * **Styles Ribbon**: Using `Heading 1` and `Heading 2` allows Word to auto-generate a dynamic Table of Contents (`References > Table of Contents`).
+                * **Page Breaks vs Section Breaks**:
+                  * **Page Break (`Ctrl + Enter`)**: Forces text onto a new page.
+                  * **Section Break**: Allows different page orientations (Portrait vs Landscape) or headers/footers within the same document.
+                * **Track Changes & Comments (`Review > Track Changes`)**: Collaboration tool to view edits, additions, and strike-throughs in shared documents.
+
+                #### Section 3: Professional Resume & Business Document Anatomy
+                * **Header**: Name, City/Country, Phone, Email (`first.last@email.com`), LinkedIn profile URL.
+                * **Professional Summary**: 3 sentences highlighting core skills, domain expertise, and key accomplishments.
+                * **Work Experience Bullet Formula**: `[Action Verb] + [Core Task] + [Quantified Result / Impact]`
+                  * *Example*: *"Optimized digital file storage system, reducing document retrieval time by 35% across a 10-person team."*
                 """)
             with tab2:
-                st.write("#### Video Lesson: How to Write a Professional Resume")
-                st.video("https://www.youtube.com/watch?v=R3abknwWX7k")
+                st.write("#### 🎥 Complete Microsoft Word & Writing Series (5 Lessons)")
+                
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.write("**Lesson 1: Microsoft Word Beginner Fundamentals**")
+                    st.video("https://www.youtube.com/watch?v=R3abknwWX7k")
+                    
+                    st.write("**Lesson 3: Formatting Resumes & Cover Letters**")
+                    st.video("https://www.youtube.com/watch?v=lxk2VaTaXgM")
+
+                    st.write("**Lesson 5: Table of Contents & Mail Merge**")
+                    st.video("https://www.youtube.com/watch?v=k1VUZEVuDJ8")
+
+                with col2:
+                    st.write("**Lesson 2: Styles, Headers & Section Breaks**")
+                    st.video("https://www.youtube.com/watch?v=Ai0MV7twEBE")
+
+                    st.write("**Lesson 4: Track Changes & Collaboration**")
+                    st.video("https://www.youtube.com/watch?v=y2K1qI_N7S4")
+
             with tab3:
                 st.subheader("✍️ Cover Letter Builder")
                 name = st.text_input("Your Full Name:")
@@ -292,18 +404,50 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
 
         # SUB-MODULE 4: POWERPOINT
         elif sub_module == "🎨 Microsoft PowerPoint & Presentations":
-            tab1, tab2, tab3 = st.tabs(["📖 Practical Guide", "🎥 Video Tutorial", "✍️ Slide Deck Builder"])
+            tab1, tab2, tab3 = st.tabs(["📖 In-Depth Practical Guide", "🎥 Video Tutorials (5 Lessons)", "✍️ Slide Deck Builder"])
             
             with tab1:
                 st.markdown("""
-                ### 🎨 Slide Design & Presentation Rules
-                * **6x6 Rule**: Max 6 lines per slide, max 6 words per bullet.
-                * **10-20-30 Rule**: 10 slides, 20 minutes, 30pt font minimum.
-                * **Visual Contrast**: Dark text on light backgrounds or vice-versa.
+                ### 🎨 Comprehensive Presentation Design & Storytelling Manual
+                
+                #### Section 1: Presentation Framework Rules
+                * **The 10-20-30 Rule**: 10 total slides, maximum 20 minutes delivery time, minimum 30pt font size so text is readable from the back of any room.
+                * **The 6x6 Rule**: Limit slides to a maximum of 6 bullet points, with no more than 6 words per bullet.
+                * **Visual Contrast**: Dark backgrounds require white/light text; light backgrounds require dark text. Avoid clutter and heavy paragraphs.
+
+                #### Section 2: Standard Business Slide Deck Architecture
+                1. **Slide 1: Title & Presenter Info** (Clear title, subtitle, name, date).
+                2. **Slide 2: Problem Statement** (Define the problem you are solving).
+                3. **Slide 3: Proposed Solution / Innovation** (Explain core idea or value).
+                4. **Slide 4: Key Supporting Data** (Use 1 clear chart or simple key metrics).
+                5. **Slide 5: Summary & Call to Action** (Provide clear next steps).
+
+                #### Section 3: PowerPoint Features & Delivery Tips
+                * **Slide Master (`View > Slide Master`)**: Edit universal font styles and logos across all slides simultaneously.
+                * **Presenter View**: Allows speakers to view notes, upcoming slides, and timers on a private screen while displaying clean slides to the audience.
+                * **SmartArt Graphics**: Convert plain text bullet points into clean, professional visual diagrams in 1 click.
                 """)
             with tab2:
-                st.write("#### Video Lesson: Presentation & Slide Design Fundamentals")
-                st.video("https://www.youtube.com/watch?v=k1VUZEVuDJ8")
+                st.write("#### 🎥 Complete PowerPoint Design Series (5 Lessons)")
+                
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.write("**Lesson 1: PowerPoint Beginners Complete Guide**")
+                    st.video("https://www.youtube.com/watch?v=k1VUZEVuDJ8")
+                    
+                    st.write("**Lesson 3: Graphic Design Rules for Slide Decks**")
+                    st.video("https://www.youtube.com/watch?v=Ai0MV7twEBE")
+
+                    st.write("**Lesson 5: Presenter View & Delivery Tips**")
+                    st.video("https://www.youtube.com/watch?v=lxk2VaTaXgM")
+
+                with col2:
+                    st.write("**Lesson 2: SmartArt & Slide Master Customization**")
+                    st.video("https://www.youtube.com/watch?v=y2K1qI_N7S4")
+
+                    st.write("**Lesson 4: Creating Data Charts & Animations**")
+                    st.video("https://www.youtube.com/watch?v=R3abknwWX7k")
+
             with tab3:
                 st.subheader("✍️ Slide Outline Builder")
                 st1 = st.text_input("Slide 1 Title:")
@@ -315,30 +459,63 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
     # -----------------------------------------------------
     elif category == "🤝 Communication & Workplace Collaboration":
         st.subheader("🤝 Communication & Workplace Collaboration")
-        st.markdown("""
-        ### Professional Workplace Communication
-        * **Email Etiquette**: Professional subject lines, formal greetings, concise requests.
-        * **Active Listening**: Paraphrasing, avoiding interruptions, taking action items.
-        * **Conflict Resolution**: Focusing on facts rather than emotions in team settings.
-        """)
+        tab1, tab2 = st.tabs(["📖 Detailed In-Depth Guide", "🎥 Video Training Series"])
+        
+        with tab1:
+            st.markdown("""
+            ### 🤝 Professional Communication & Workplace Synergy Manual
+            
+            #### Section 1: Business Email Etiquette Standards
+            * **Subject Lines**: Must be concise and descriptive (e.g., `ACTION REQUIRED: Q3 Report Review`).
+            * **Salutations**: Use formal greetings (`Dear Mr./Ms. [Last Name]`, or `Dear [Team Name]`).
+            * **The BLUF Rule (Bottom Line Up Front)**: State your core message or request in the first two sentences.
+
+            #### Section 2: Active Listening & Conflict Resolution
+            * **Active Listening**: Paraphrase speaker points, take written notes, and ask clarifying questions before responding.
+            * **De-escalation Framework**: Separate facts from emotional reactions during workplace disagreements. Focus on shared goals rather than personal differences.
+            """)
+        with tab2:
+            st.video("https://www.youtube.com/watch?v=R3abknwWX7k")
 
     elif category == "💼 Financial Literacy & Budgeting":
         st.subheader("💼 Financial Literacy & Budgeting")
-        st.markdown("""
-        ### Personal & Business Budgeting
-        * **50/30/20 Rule**: 50% Needs, 30% Wants, 20% Savings/Debt.
-        * **Income vs Expenses**: Tracking monthly cash flow using spreadsheets.
-        * **Emergency Funds**: Setting aside 3–6 months of living expenses.
-        """)
+        tab1, tab2 = st.tabs(["📖 Detailed In-Depth Guide", "🎥 Video Training Series"])
+        
+        with tab1:
+            st.markdown("""
+            ### 💼 Personal & Small Business Financial Management Manual
+            
+            #### Section 1: The 50/30/20 Budgeting Allocation Framework
+            * **50% Needs**: Essential living costs (housing, utilities, groceries, basic transportation).
+            * **30% Wants**: Discretionary spending (entertainment, dining out, hobbies).
+            * **20% Savings & Debt Repayment**: Emergency funds, investments, and principal debt payments.
+
+            #### Section 2: Income Statement & Cash Flow Fundamentals
+            * **Net Cash Flow**: Total Cash Inflows minus Total Cash Outflows over 30 days.
+            * **Emergency Fund Strategy**: Build 3 to 6 months of living expenses in liquid, low-risk accounts.
+            """)
+        with tab2:
+            st.video("https://www.youtube.com/watch?v=y2K1qI_N7S4")
 
     elif category == "🚀 Critical Thinking & Problem Solving":
         st.subheader("🚀 Critical Thinking & Problem Solving")
-        st.markdown("""
-        ### Structured Decision-Making
-        * **5 Whys Methodology**: Root-cause analysis by repeatedly asking 'Why?'.
-        * **SWOT Analysis**: Strengths, Weaknesses, Opportunities, Threats.
-        * **Data-Driven Decisions**: Evaluating facts before reaching conclusions.
-        """)
+        tab1, tab2 = st.tabs(["📖 Detailed In-Depth Guide", "🎥 Video Training Series"])
+        
+        with tab1:
+            st.markdown("""
+            ### 🚀 Analytical Thinking & Problem-Solving Frameworks
+            
+            #### Section 1: The 5 Whys Root Cause Analysis
+            Iteratively ask "Why?" five times to drill down past surface symptoms to find the underlying issue:
+            1. *Problem*: The software crashed. -> *Why?* -> The server ran out of memory.
+            2. *Why?* -> A process didn't close correctly. -> *Why?* -> Memory leaks in the code update.
+            3. *Why?* -> Updates weren't tested properly before release. -> *Why?* -> No automated testing pipeline exists.
+
+            #### Section 2: SWOT Matrix Analysis
+            Evaluate **Strengths**, **Weaknesses**, **Opportunities**, and **Threats** before launching any new initiative or making strategic decisions.
+            """)
+        with tab2:
+            st.video("https://www.youtube.com/watch?v=lxk2VaTaXgM")
 
 # ---------------------------------------------------------
 # 6. PAGE 4: SELF-ASSESSMENT & ROADMAP

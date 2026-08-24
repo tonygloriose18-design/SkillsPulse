@@ -8,6 +8,37 @@ st.set_page_config(
     layout="wide"
 )
 
+# Custom High-End Styling
+st.markdown("""
+    <style>
+    /* Main Theme Styling */
+    .stApp {
+        background-color: #0e1117;
+    }
+    .main-header {
+        background: linear-gradient(90deg, #1f2937 0%, #111827 100%);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid #374151;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    .talent-card {
+        background-color: #1f2937;
+        padding: 1.5rem;
+        border-radius: 10px;
+        border-left: 5px solid #3b82f6;
+        margin-bottom: 1rem;
+    }
+    .metric-container {
+        background-color: #111827;
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid #374151;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # 2. Global State Management
 if "current_page" not in st.session_state:
     st.session_state.current_page = "🏠 Home Dashboard"
@@ -18,8 +49,17 @@ if "selected_module" not in st.session_state:
 if "verified_student" not in st.session_state:
     st.session_state.verified_student = False
 
+# Sample Talent Database
+if "talent_pool" not in st.session_state:
+    st.session_state.talent_pool = [
+        {"name": "Alex Morgan", "track": "Computer Literacy (Excel Focus)", "score": "98%", "skills": ["Excel Formulas", "VLOOKUP", "Pivot Tables", "Word Drafting"], "status": "Verified"},
+        {"name": "David Chen", "track": "Business Analytics & Data Visualization", "score": "95%", "skills": ["Data Visualization", "Dashboards", "Excel", "KPI Tracking"], "status": "Verified"},
+        {"name": "Sarah Jenkins", "track": "Cybersecurity & Online Safety", "score": "92%", "skills": ["Phishing Defense", "Password Hygiene", "Encryption Protocols"], "status": "Verified"},
+        {"name": "Grace Uwase", "track": "Web & Digital Marketing Fundamentals", "score": "96%", "skills": ["SEO", "Content Strategy", "PPC Campaigns"], "status": "Verified"}
+    ]
+
 # Sidebar Navigation
-st.sidebar.title("📌 Navigation Menu")
+st.sidebar.title("📌 SkillsPulse Menu")
 nav_choice = st.sidebar.radio(
     "Go to section:",
     [
@@ -27,6 +67,7 @@ nav_choice = st.sidebar.radio(
         "🤖 SkillsPulse AI Assistant", 
         "📚 Learning Modules & Practical Lab", 
         "📸 Student Identity & Camera Proctoring",
+        "🏢 Investor & Business Talent Portal",
         "📝 Self-Assessment & Roadmap", 
         "ℹ️ About Platform"
     ],
@@ -35,6 +76,7 @@ nav_choice = st.sidebar.radio(
         "🤖 SkillsPulse AI Assistant", 
         "📚 Learning Modules & Practical Lab", 
         "📸 Student Identity & Camera Proctoring",
+        "🏢 Investor & Business Talent Portal",
         "📝 Self-Assessment & Roadmap", 
         "ℹ️ About Platform"
     ].index(st.session_state.current_page)
@@ -48,26 +90,30 @@ HERO_IMAGE_URL = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q
 # 3. PAGE 1: HOME DASHBOARD
 # ---------------------------------------------------------
 if st.session_state.current_page == "🏠 Home Dashboard":
-    st.title("📚 SkillsPulse: Essential Skills Academy")
-    st.write("An interactive, high-impact learning suite designed for practical digital literacy, soft skills, and workforce readiness.")
+    st.markdown("""
+        <div class="main-header">
+            <h1 style="color: #f3f4f6; margin-bottom: 0.5rem;">📚 SkillsPulse: Essential Skills Academy</h1>
+            <p style="color: #9ca3af; font-size: 1.1rem;">An interactive, high-impact learning suite and talent ecosystem built for workforce readiness.</p>
+        </div>
+    """, unsafe_allow_html=True)
     
     try:
-        st.image(HERO_IMAGE_URL, caption="Practical Digital Literacy & Skills Mastery", use_container_width=True)
+        st.image(HERO_IMAGE_URL, caption="Practical Digital Literacy & Talent Ecosystem", use_container_width=True)
     except:
         st.info("Image loading...")
         
     st.divider()
     
-    st.header("⚡ Platform Dashboard Overview")
+    st.header("⚡ Platform Metrics")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.metric(label="Active Courses", value="8 Total Modules")
+        st.metric(label="Active Courses", value="8 Modules")
     with col2:
-        st.metric(label="Core Suite", value="Word, Excel, PPT")
+        st.metric(label="Core Focus", value="Word, Excel, PPT")
     with col3:
         st.metric(label="Proctor Security", value="Active Camera Guard")
     with col4:
-        st.metric(label="Access Cost", value="100% Free")
+        st.metric(label="Talent Portal", value="Investor Ready")
 
     st.write("---")
     st.subheader("💡 Launch Learning Tracks Directly")
@@ -211,7 +257,6 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
     st.session_state.selected_module = category
     st.divider()
     
-    # COURSE 1: COMPUTER LITERACY
     if category == "💻 Computer Literacy":
         st.subheader("💻 Computer Literacy Suite")
         st.write("Explore OS navigation along with specialized sub-modules for Microsoft Word, Excel (Main Focus), and PowerPoint.")
@@ -313,7 +358,6 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
             with tab3:
                 st.write("Slide outline generator.")
 
-    # COURSE 2: COMMUNICATION
     elif category == "🤝 Communication & Workplace Collaboration":
         st.subheader("🤝 Communication & Workplace Collaboration")
         tab1, tab2 = st.tabs(["📖 In-Depth Guide", "🎥 Video Tutorials"])
@@ -322,7 +366,6 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
         with tab2:
             st.video("https://www.youtube.com/watch?v=R3abknwWX7k")
 
-    # COURSE 3: FINANCIAL LITERACY
     elif category == "💼 Financial Literacy & Budgeting":
         st.subheader("💼 Financial Literacy & Budgeting")
         tab1, tab2 = st.tabs(["📖 In-Depth Guide", "🎥 Video Tutorials"])
@@ -331,7 +374,6 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
         with tab2:
             st.video("https://www.youtube.com/watch?v=y2K1qI_N7S4")
 
-    # COURSE 4: CRITICAL THINKING
     elif category == "🚀 Critical Thinking & Problem Solving":
         st.subheader("🚀 Critical Thinking & Problem Solving")
         tab1, tab2 = st.tabs(["📖 In-Depth Guide", "🎥 Video Tutorials"])
@@ -340,59 +382,35 @@ elif st.session_state.current_page == "📚 Learning Modules & Practical Lab":
         with tab2:
             st.video("https://www.youtube.com/watch?v=lxk2VaTaXgM")
 
-    # COURSE 5: DIGITAL MARKETING
     elif category == "🌐 Web & Digital Marketing Fundamentals":
         st.subheader("🌐 Web & Digital Marketing Fundamentals")
         tab1, tab2 = st.tabs(["📖 In-Depth Manual", "🎥 Video Tutorials"])
         with tab1:
-            st.markdown("""
-            ### 🌐 Digital Marketing & Web Strategy
-            * **Search Engine Optimization (SEO)**: Optimizing content using targeted keywords and backlink structures.
-            * **Pay-Per-Click (PPC)**: Running targeted advertising campaigns across engines.
-            * **Content Funnels**: Awareness -> Consideration -> Conversion stages.
-            """)
+            st.markdown("### Digital Marketing Strategy\nFocus on SEO, PPC, and content conversion funnels.")
         with tab2:
             st.video("https://www.youtube.com/watch?v=k1VUZEVuDJ8")
 
-    # COURSE 6: CYBERSECURITY
     elif category == "🛡️ Cybersecurity & Online Safety":
         st.subheader("🛡️ Cybersecurity & Online Safety")
         tab1, tab2 = st.tabs(["📖 In-Depth Manual", "🎥 Video Tutorials"])
         with tab1:
-            st.markdown("""
-            ### 🛡️ Digital Security Principles
-            * **Phishing Identification**: Inspecting sender addresses, urgent calls to action, and suspicious links.
-            * **Password Hygiene**: Using complex length strings paired with multi-factor authentication.
-            * **Data Encryption**: Verification of HTTPS protocol signatures across network endpoints.
-            """)
+            st.markdown("### Digital Security Principles\nPhishing defense, password security, and SSL encryption.")
         with tab2:
             st.video("https://www.youtube.com/watch?v=lxk2VaTaXgM")
 
-    # COURSE 7: PRACTICAL TRADES
     elif category == "🛠️ Basic Practical Trades & Technical Maintenance":
         st.subheader("🛠️ Basic Practical Trades & Technical Maintenance")
         tab1, tab2 = st.tabs(["📖 In-Depth Manual", "🎥 Video Tutorials"])
         with tab1:
-            st.markdown("""
-            ### 🛠️ Hardware & Physical Tool Operations
-            * **Workplace Safety Protocols**: Wearing PPE (Personal Protective Equipment) and managing workspace clean zones.
-            * **Basic Troubleshooting**: Diagnostic testing using step-by-step isolation procedures.
-            * **Equipment Calibration**: Periodic checks to ensure accurate mechanical performance.
-            """)
+            st.markdown("### Technical Maintenance\nWorkplace safety protocols, PPE compliance, and tool diagnostics.")
         with tab2:
             st.video("https://www.youtube.com/watch?v=y2K1qI_N7S4")
 
-    # COURSE 8: DATA VISUALIZATION
     elif category == "📊 Business Analytics & Data Visualization":
         st.subheader("📊 Business Analytics & Data Visualization")
         tab1, tab2 = st.tabs(["📖 In-Depth Manual", "🎥 Video Tutorials"])
         with tab1:
-            st.markdown("""
-            ### 📊 Data Visualization & Dashboarding
-            * **Chart Type Selection**: Bar charts for category comparison, line charts for trends, scatter plots for correlation.
-            * **Data Cleaning**: Removing duplicates, handling null fields, and normalizing raw numbers.
-            * **Key Performance Indicators (KPIs)**: Tracking measurable operational targets clearly.
-            """)
+            st.markdown("### Data Visualization Fundamentals\nSelecting chart types, data cleaning, and tracking KPIs.")
         with tab2:
             st.video("https://www.youtube.com/watch?v=Ai0MV7twEBE")
 
@@ -414,7 +432,79 @@ elif st.session_state.current_page == "📸 Student Identity & Camera Proctoring
         st.info("Please allow camera access and snap a photo to verify student identity.")
 
 # ---------------------------------------------------------
-# 7. PAGE 5: SELF-ASSESSMENT & ROADMAP
+# 7. NEW PAGE 5: INVESTOR & BUSINESS TALENT PORTAL
+# ---------------------------------------------------------
+elif st.session_state.current_page == "🏢 Investor & Business Talent Portal":
+    st.title("🏢 Investor & Business Talent Matching Portal")
+    st.write("Connecting verified SkillsPulse graduates with businesses and investors seeking skilled talent.")
+
+    tab_search, tab_post = st.tabs(["🔍 Search Verified Talent", "📋 Post a Business Job Requirement"])
+
+    with tab_search:
+        st.subheader("Match Skills to Verified Graduates")
+        col_a, col_b = st.columns(2)
+        with col_a:
+            search_track = st.selectbox(
+                "Filter by Primary Competency Track:",
+                [
+                    "All Tracks",
+                    "Computer Literacy (Excel Focus)",
+                    "Business Analytics & Data Visualization",
+                    "Cybersecurity & Online Safety",
+                    "Web & Digital Marketing Fundamentals"
+                ]
+            )
+        with col_b:
+            search_skill = st.text_input("Filter by Specific Skill Keyword:", placeholder="e.g. Excel Formulas, SEO, Phishing")
+
+        st.divider()
+        st.subheader("Available Qualified Candidates")
+
+        for person in st.session_state.talent_pool:
+            if search_track == "All Tracks" or search_track in person["track"]:
+                if not search_skill or any(search_skill.lower() in s.lower() for s in person["skills"]):
+                    st.markdown(f"""
+                        <div class="talent-card">
+                            <h3 style="color: #60a5fa; margin-bottom: 0.2rem;">👤 {person['name']} <span style="color: #34d399; font-size: 0.9rem;">({person['status']})</span></h3>
+                            <p style="color: #d1d5db; margin-bottom: 0.5rem;"><strong>Primary Specialization:</strong> {person['track']} | <strong>Course Score:</strong> {person['score']}</p>
+                            <p style="color: #9ca3af; margin-bottom: 0.5rem;"><strong>Verified Skills:</strong> {', '.join(person['skills'])}</p>
+                        </div>
+                    """, unsafe_allow_html=True)
+                    if st.button(f"📩 Request Contact Info for {person['name']}", key=person['name']):
+                        st.success(f"Contact request logged for {person['name']}. An automated connection email will be sent to your registered business address.")
+
+    with tab_post:
+        st.subheader("Post a Role & Find Automated Matches")
+        st.write("Businesses and investors can define specific role requirements to auto-match with our talent pool.")
+
+        company_name = st.text_input("Company / Investor Name:", placeholder="e.g. Horizon Capital")
+        role_title = st.text_input("Job / Internship Title:", placeholder="e.g. Junior Data Analyst")
+        required_track = st.selectbox(
+            "Required Primary Skills Track:",
+            [
+                "Computer Literacy (Excel Focus)",
+                "Business Analytics & Data Visualization",
+                "Cybersecurity & Online Safety",
+                "Web & Digital Marketing Fundamentals"
+            ]
+        )
+        required_skills = st.text_area("List Required Skills (separated by commas):", placeholder="e.g. Excel, VLOOKUP, Data Visualization")
+
+        if st.button("Submit Role & Run Talent Match 🚀"):
+            if company_name and role_title:
+                st.balloons()
+                st.success(f"Job posting for '{role_title}' at {company_name} submitted successfully!")
+                
+                # Match Logic
+                matches = [p for p in st.session_state.talent_pool if p["track"] == required_track]
+                st.write(f"### 🎯 Found {len(matches)} High-Match Candidates:")
+                for m in matches:
+                    st.info(f"**Candidate:** {m['name']} | **Assessment Score:** {m['score']} | **Skills:** {', '.join(m['skills'])}")
+            else:
+                st.error("Please fill in company name and role title.")
+
+# ---------------------------------------------------------
+# 8. PAGE 6: SELF-ASSESSMENT & ROADMAP
 # ---------------------------------------------------------
 elif st.session_state.current_page == "📝 Self-Assessment & Roadmap":
     st.title("📝 Self-Assessment & Roadmap Generator")
@@ -454,15 +544,15 @@ elif st.session_state.current_page == "📝 Self-Assessment & Roadmap":
             1. **Week 1:** Verify identity in camera proctor lab & complete baseline topics.
             2. **Week 2:** Master chosen course skills & core practical guides.
             3. **Week 3:** Work through video tutorials & complete interactive labs.
-            4. **Week 4:** Take advanced evaluation modules & use AI Assistant for spot checks.
+            4. **Week 4:** Publish profile to the Investor & Business Talent Portal.
             """)
 
 # ---------------------------------------------------------
-# 8. PAGE 6: ABOUT PLATFORM
+# 9. PAGE 7: ABOUT PLATFORM
 # ---------------------------------------------------------
 elif st.session_state.current_page == "ℹ️ About Platform":
     st.title("ℹ️ About SkillsPulse Academy")
-    st.write("SkillsPulse is an integrated learning management environment focused on practical digital literacy, workforce development, and hands-on software training.")
+    st.write("SkillsPulse is an integrated learning management environment focused on practical digital literacy, workforce development, and direct talent placement for businesses and investors.")
 
 st.divider()
-st.caption("SkillsPulse Platform — All-in-One Practical Learning Dashboard")
+st.caption("SkillsPulse Platform — All-in-One Practical Learning & Talent Ecosystem")
